@@ -402,6 +402,32 @@ MonoBehaviour:
   fatherT: {fileID: 2031498417}
   sonT: {fileID: 1020676702}
   targetT: {fileID: 1763734218}
+  isFollowing: 0
+  leftButtonX:
+    m_UseReference: 1
+    m_Action:
+      m_Name: Left Button X
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: c5dcbe79-4f81-40b0-85ac-125945d4b384
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_Reference: {fileID: 4235571679551039572, guid: ea9500ae32862c949b420c59682d02ed,
+      type: 3}
+  leftButtonY:
+    m_UseReference: 0
+    m_Action:
+      m_Name: Left Button Y
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: 1968cb11-366a-42d5-8f74-9e6300424609
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_Reference: {fileID: 0}
 --- !u!4 &781945552 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6205978765064041052, guid: f13bbbc9578242a44953eec81cfb27d4,

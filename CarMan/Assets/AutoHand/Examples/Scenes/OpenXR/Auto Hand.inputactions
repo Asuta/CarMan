@@ -9,7 +9,7 @@
                     "name": "Grip Pressed (R)",
                     "type": "Button",
                     "id": "1d49c14b-53c9-4b24-9f7e-01b847117447",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "Press(pressPoint=0.85)",
                     "initialStateCheck": false

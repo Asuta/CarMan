@@ -1,12 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class ManOriginSet : MonoBehaviour
 {
     public Transform fatherT;
     public Transform sonT;
     public Transform targetT;
+    public bool isFollowing;
+
+    // 用于存储跟随时的相对位置和角度
+    private Vector3 initialRelativePosition;
+    private Quaternion initialRelativeRotation;
+    private bool isFollowingInitialized = false;
+
+    public bool leftButtonX;
+    public InputActionProperty leftButtonY;
 
 
     /// <summary>
@@ -33,7 +43,7 @@ public class ManOriginSet : MonoBehaviour
 
         // 位置完全移动到目标位置
         Vector3 modifiedTargetPos = targetWorldPos;
-        
+
         // 只使用目标旋转的y轴分量，保持x和z轴旋转不变
         Vector3 targetEuler = targetWorldRot.eulerAngles;
         Vector3 currentEuler = son.rotation.eulerAngles;
@@ -63,6 +73,32 @@ public class ManOriginSet : MonoBehaviour
             return;
         }
         AlignChildToTargetByMovingParent(fatherT, sonT, targetT.position, targetT.rotation);
+    }
+
+    /// <summary>
+    /// 移动子物体到目标位置并更新相对位置和角度数据
+    /// 该方法会先清除之前存储的相对位置和角度值，然后移动子物体到目标位置，
+    /// 最后重新计算并存储新的相对位置和角度值，供父物体跟随功能使用。
+    /// </summary>
+    [ContextMenu("Move Child And Update Relative Transform")]
+    public void MoveChildAndUpdateRelativeTransform()
+    {
+        if (fatherT == null || sonT == null || targetT == null)
+        {
+            Debug.LogWarning("请先在 Inspector 中指定 fatherT / sonT / targetT");
+            return;
+        }
+
+        // 清除之前存储的相对位置和角度值
+        isFollowingInitialized = false;
+
+        // 使用AlignChildToTargetByMovingParent方法移动子物体到目标位置
+        AlignChildToTargetByMovingParent(fatherT, sonT, targetT.position, targetT.rotation);
+
+        // 重新计算并存储新的相对位置和角度值
+        initialRelativePosition = Quaternion.Inverse(targetT.rotation) * (sonT.position - targetT.position);
+        initialRelativeRotation = Quaternion.Inverse(targetT.rotation) * sonT.rotation;
+        isFollowingInitialized = true;
     }
 
     // 从 4x4 矩阵提取位置与旋转（将旋转基向量单位化，剔除缩放影响）
@@ -98,6 +134,39 @@ public class ManOriginSet : MonoBehaviour
     void Update()
     {
 
+        isFollowing = leftButtonX;
 
+        // 如果开启了跟随模式
+        if (isFollowing)
+        {
+            // 检查必要的Transform是否已设置
+            if (fatherT == null || sonT == null || targetT == null)
+            {
+                Debug.LogWarning("请先在 Inspector 中指定 fatherT / sonT / targetT");
+                return;
+            }
+
+            // 如果是第一次进入跟随模式，记录初始的相对位置和角度
+            if (!isFollowingInitialized)
+            {
+                // 计算子物体相对于目标的位置和旋转
+                initialRelativePosition = Quaternion.Inverse(targetT.rotation) * (sonT.position - targetT.position);
+                initialRelativeRotation = Quaternion.Inverse(targetT.rotation) * sonT.rotation;
+                isFollowingInitialized = true;
+            }
+
+            // 根据记录的相对位置和角度，计算子物体应该在的位置和旋转
+            Vector3 targetPosition = targetT.position + targetT.rotation * initialRelativePosition;
+            Quaternion targetRotation = targetT.rotation * initialRelativeRotation;
+
+            // 直接将计算出的位置和旋转赋值给父物体
+            fatherT.position = targetPosition;
+            fatherT.rotation = targetRotation;
+        }
+        else
+        {
+            // 如果关闭了跟随模式，重置初始化标志
+            isFollowingInitialized = false;
+        }
     }
 }
