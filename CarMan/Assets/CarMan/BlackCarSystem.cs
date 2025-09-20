@@ -21,7 +21,7 @@ public class BlackCarSystem : MonoBehaviour
 
     IEnumerator FadeOutLightSystem()
     {
-        float duration = 2.0f; // 渐变持续时间（秒）
+        float duration = 0.5f; // 渐变持续时间（秒）
         float currentTime = 0f;
         
         // 获取当前颜色
@@ -33,8 +33,9 @@ public class BlackCarSystem : MonoBehaviour
             currentTime += Time.deltaTime;
             float progress = currentTime / duration;
             
-            // 线性插值计算当前alpha值
-            LightSystem.color = Color.Lerp(startColor, endColor, progress);
+            // 使用SmoothStep实现先快后慢的插值效果
+            float smoothProgress = Mathf.SmoothStep(0f, 1f, progress);
+            LightSystem.color = Color.Lerp(startColor, endColor, smoothProgress);
             
             yield return null;
         }
