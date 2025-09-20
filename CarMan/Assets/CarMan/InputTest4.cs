@@ -51,6 +51,6 @@ public class InputTest4 : MonoBehaviour
 
         // 读取并输出摇杆的值
         Vector2 stickValue = stickL.action.ReadValue<Vector2>();
-        Debug.Log("摇杆值 - X: " + stickValue.x + ", Y: " + stickValue.y);
+        // Debug.Log("摇杆值 - X: " + stickValue.x + ", Y: " + stickValue.y);
     }
 }
