@@ -11,6 +11,16 @@ public class ManOriginSet : MonoBehaviour
     public Transform fatherT;
     public Transform sonT;
     public Transform targetT;
+    
+    [Header("跟踪模式设置")]
+    [Tooltip("是否处于跟踪模式")]
+    public bool isTrackingMode = false;
+    
+    [Tooltip("跟踪模式下父物体相对于目标物体的位置")]
+    private Vector3 fatherRelativePosition;
+    
+    [Tooltip("跟踪模式下父物体相对于目标物体的旋转")]
+    private Quaternion fatherRelativeRotation;
 
     /// <summary>
     /// 通过"移动/旋转父物体"，让指定子物体在世界空间达到目标位置与角度。
@@ -71,5 +81,82 @@ public class ManOriginSet : MonoBehaviour
         Quaternion newRot = Quaternion.LookRotation(f, u);
 
         fatherT.SetPositionAndRotation(newPos, newRot);
+    }
+    
+    /// <summary>
+    /// 进入跟踪模式：计算父物体与目标物体之间的相对位置和角度，并开始跟踪
+    /// </summary>
+    [ContextMenu("Enter Tracking Mode")]
+    [Button("进入跟踪模式")]
+    public void EnterTrackingMode()
+    {
+        // 参数验证
+        if (fatherT == null || sonT == null || targetT == null)
+        {
+            Debug.LogWarning("请先在 Inspector 中指定 fatherT / sonT / targetT");
+            return;
+        }
+        if (!sonT.IsChildOf(fatherT))
+        {
+            Debug.LogError("参数错误：son 必须是 father 的子孙节点");
+            return;
+        }
+        
+        // 计算父物体相对于目标物体的位置和旋转
+        fatherRelativePosition = fatherT.position - targetT.position;
+        fatherRelativeRotation = Quaternion.Inverse(targetT.rotation) * fatherT.rotation;
+        
+        isTrackingMode = true;
+        Debug.Log("已进入跟踪模式");
+    }
+    
+    /// <summary>
+    /// 退出跟踪模式：停止跟踪目标物体
+    /// </summary>
+    [ContextMenu("Exit Tracking Mode")]
+    [Button("退出跟踪模式")]
+    public void ExitTrackingMode()
+    {
+        isTrackingMode = false;
+        Debug.Log("已退出跟踪模式");
+    }
+    
+    /// <summary>
+    /// 切换跟踪模式：如果当前在跟踪模式则退出，否则进入跟踪模式
+    /// </summary>
+    [ContextMenu("Toggle Tracking Mode")]
+    [Button("切换跟踪模式")]
+    public void ToggleTrackingMode()
+    {
+        if (isTrackingMode)
+        {
+            ExitTrackingMode();
+        }
+        else
+        {
+            EnterTrackingMode();
+        }
+    }
+    
+    void Update()
+    {
+        // 如果处于跟踪模式，更新父物体的位置和旋转以保持与目标物体的相对关系
+        if (isTrackingMode && fatherT != null && sonT != null && targetT != null)
+        {
+            // 计算父物体应该到达的世界位置和旋转
+            Vector3 targetFatherPosition = targetT.position + targetT.rotation * fatherRelativePosition;
+            Quaternion targetFatherRotation = targetT.rotation * fatherRelativeRotation;
+            
+            // 直接设置父物体的位置和旋转
+            fatherT.SetPositionAndRotation(targetFatherPosition, targetFatherRotation);
+        }
+
+        // 空格键测试功能：退出跟踪模式 -> 对齐 -> 重新进入跟踪模式
+        if(Input.GetKeyDown(KeyCode.Space))
+        {
+            ExitTrackingMode();
+            AlignChildToTargetByMovingParent();
+            EnterTrackingMode();
+        }
     }
 }
