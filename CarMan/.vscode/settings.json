@@ -56,5 +56,9 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "CarMan.sln"
+    "dotnet.defaultSolution": "CarMan.sln",
+    "dotrush.roslyn.projectOrSolutionFiles": [
+        "d:\\Project\\CarMan\\CarMan\\CarMan.sln",
+        "d:\\Project\\CarMan\\CarMan\\Library\\com.singularitygroup.hotreload\\Solution\\CarMan.sln"
+    ]
 }
