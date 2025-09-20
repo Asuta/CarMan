@@ -6,6 +6,11 @@ using UnityEngine;
 public class BlackCarSystem : MonoBehaviour
 {
     public SpriteRenderer LightSystem;
+    public Collider buttonOne;
+    public Collider buttonTwo;
+    public Collider buttonThree;
+
+
 
     // Start is called before the first frame update
     void Start()
@@ -42,6 +47,9 @@ public class BlackCarSystem : MonoBehaviour
         
         // 确保最终alpha值为0
         LightSystem.color = endColor;
+        buttonOne.enabled = true;
+        buttonTwo.enabled = true;
+        buttonThree.enabled = true;
     }
 
     void OnCollisionEnter(Collision collision)
