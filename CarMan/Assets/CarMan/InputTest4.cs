@@ -6,6 +6,8 @@ using UnityEngine.InputSystem;
 public class InputTest4 : MonoBehaviour
 {
     public InputActionProperty menuButton;
+    public InputActionProperty stickL;
+
     public bool testBool;
 
     // Start is called before the first frame update
@@ -13,6 +15,7 @@ public class InputTest4 : MonoBehaviour
     {
         // 启用输入动作
         menuButton.action.Enable();
+        stickL.action.Enable();
     }
 
     // Update is called once per frame
@@ -45,5 +48,9 @@ public class InputTest4 : MonoBehaviour
 
         // 输出当前状态用于调试
         // Debug.Log("菜单按钮状态: " + (isCurrentlyPressed ? "按下" : "抬起") + ", testBool: " + testBool);
+
+        // 读取并输出摇杆的值
+        Vector2 stickValue = stickL.action.ReadValue<Vector2>();
+        Debug.Log("摇杆值 - X: " + stickValue.x + ", Y: " + stickValue.y);
     }
 }

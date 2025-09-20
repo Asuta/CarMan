@@ -455,6 +455,19 @@ MonoBehaviour:
       m_Flags: 0
     m_Reference: {fileID: -6608828962120449096, guid: ea9500ae32862c949b420c59682d02ed,
       type: 3}
+  stickL:
+    m_UseReference: 1
+    m_Action:
+      m_Name: Stick L
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: bb87a719-8b57-4165-9c36-a2378f8f0417
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_Reference: {fileID: -8461241448747968034, guid: ea9500ae32862c949b420c59682d02ed,
+      type: 3}
   testBool: 0
 --- !u!4 &781945552 stripped
 Transform:

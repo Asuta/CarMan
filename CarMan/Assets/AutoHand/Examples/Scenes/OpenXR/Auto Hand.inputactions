@@ -202,6 +202,24 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Stick(L)",
+                    "type": "Value",
+                    "id": "1a15277d-0404-420c-9753-26ca0218b18f",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "Stick(R)",
+                    "type": "Button",
+                    "id": "e1fc9033-7d72-4223-8017-c63f9aadeb50",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -488,6 +506,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "Menu(R)",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d0b05aa4-bf87-4153-bf71-565748064340",
+                    "path": "<XRController>{LeftHand}/thumbstick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Stick(L)",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "628b7092-ea1e-40cd-9520-40793b61ee9b",
+                    "path": "<XRController>{RightHand}/thumbstick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Stick(R)",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
