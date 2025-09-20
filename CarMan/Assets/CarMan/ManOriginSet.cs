@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -15,8 +16,6 @@ public class ManOriginSet : MonoBehaviour
     private Quaternion initialRelativeRotation;
     private bool isFollowingInitialized = false;
 
-    public bool leftButtonX;
-    public InputActionProperty leftButtonY;
 
 
     /// <summary>
@@ -134,7 +133,10 @@ public class ManOriginSet : MonoBehaviour
     void Update()
     {
 
-        isFollowing = leftButtonX;
+        if(Input.GetKeyDown(KeyCode.Space))
+        {
+            ResetAll();   
+        }
 
         // 如果开启了跟随模式
         if (isFollowing)
@@ -161,12 +163,23 @@ public class ManOriginSet : MonoBehaviour
 
             // 直接将计算出的位置和旋转赋值给父物体
             fatherT.position = targetPosition;
-            fatherT.rotation = targetRotation;
+            // fatherT.rotation = targetRotation;
         }
         else
         {
             // 如果关闭了跟随模式，重置初始化标志
             isFollowingInitialized = false;
         }
+    }
+
+    private void ResetAll()
+    {
+
+        isFollowing = false;
+        // 3. 执行对齐子物体操作（只对齐Y轴，保持X轴和Z轴不变）
+        AlignChildToTargetByMovingParent();
+        isFollowing = true;
+        
+
     }
 }
