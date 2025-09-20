@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class InputTest : MonoBehaviour
+public class InputTest3 : MonoBehaviour
 {
     [Header("Input Action Asset")]
     [SerializeField] private InputActionAsset inputActionAsset;

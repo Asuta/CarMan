@@ -63,7 +63,7 @@
                     "name": "Grip Pressed (L)",
                     "type": "Button",
                     "id": "61fbe058-5cbf-404d-843a-0ec8ef9860d0",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "Press(pressPoint=0.85)",
                     "initialStateCheck": false
@@ -72,7 +72,7 @@
                     "name": "Grip Released (L)",
                     "type": "Button",
                     "id": "cf582500-8c04-40d2-9d63-27232968428e",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "Press(pressPoint=0.8,behavior=1)",
                     "initialStateCheck": false
@@ -99,7 +99,7 @@
                     "name": "Primary Pressed (L)",
                     "type": "Button",
                     "id": "5b4863cc-89dc-4525-be7d-a1a6977afcfd",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "Press",
                     "initialStateCheck": false
@@ -108,9 +108,27 @@
                     "name": "Primary Released (L)",
                     "type": "Button",
                     "id": "f751b8c0-0731-4e3e-bfae-85bc6c54cc8b",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "Press(behavior=1)",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Second Pressed (L)",
+                    "type": "Button",
+                    "id": "7bf18726-9594-4a87-84cd-c338d5cb7fa5",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "Press",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Second Pressed (R)",
+                    "type": "Button",
+                    "id": "d6031025-e329-4280-a23e-88d1a858a3bc",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "Press",
                     "initialStateCheck": false
                 },
                 {
@@ -166,6 +184,24 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
+                },
+                {
+                    "name": "Menu(L)",
+                    "type": "Button",
+                    "id": "a4acd473-9e00-4704-8fbb-8c6ac1d5bf6c",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Menu(R)",
+                    "type": "Button",
+                    "id": "ffd5872d-28eb-4659-9b5f-8d60166bd602",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -292,6 +328,28 @@
                 },
                 {
                     "name": "",
+                    "id": "df59fc1e-863a-4821-b1b5-be71ea63668b",
+                    "path": "<XRController>{LeftHand}/{SecondaryButton}",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Second Pressed (L)",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "2a7c96f2-6def-42c3-831c-da6c73515720",
+                    "path": "<XRController>{RightHand}/{SecondaryButton}",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Second Pressed (R)",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "d1aa0d3d-c95b-4e54-8b35-a8b94b8d9c7b",
                     "path": "<XRController>{LeftHand}/primaryButton",
                     "interactions": "",
@@ -408,6 +466,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "Haptic (L)",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "bfa6fcc0-1e8b-4112-8129-2cec4351cc6e",
+                    "path": "<XRController>{LeftHand}/menuButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Menu(L)",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ef5853fa-66c3-4e2d-99af-455b064fdad3",
+                    "path": "<XRController>{LeftHand}/menuButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Menu(R)",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

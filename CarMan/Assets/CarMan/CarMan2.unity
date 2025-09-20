@@ -423,13 +423,39 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 633288612}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bcd8d33de4f828f49ab494e373d8d422, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   inputActionAsset: {fileID: -944628639613478452, guid: ea9500ae32862c949b420c59682d02ed,
     type: 3}
+--- !u!114 &633288619
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 633288612}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba97d78ebbe9eff4f918c8a74b7591b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  menuButton:
+    m_UseReference: 1
+    m_Action:
+      m_Name: Menu Button
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: 1e04329d-856f-45e8-9516-196be8f2ff41
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_Reference: {fileID: -6608828962120449096, guid: ea9500ae32862c949b420c59682d02ed,
+      type: 3}
+  testBool: 0
 --- !u!4 &781945552 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6205978765064041052, guid: f13bbbc9578242a44953eec81cfb27d4,
@@ -9594,6 +9620,31 @@ PrefabInstance:
         type: 3}
       propertyPath: aimerSmoothingSpeed
       value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 3395973213855612963, guid: f13bbbc9578242a44953eec81cfb27d4,
+        type: 3}
+      propertyPath: turnAxis2.m_Action.m_Name
+      value: Turn Axis 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3395973213855612963, guid: f13bbbc9578242a44953eec81cfb27d4,
+        type: 3}
+      propertyPath: turnAxis2.m_Action.m_SingletonActionBindings.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3395973213855612963, guid: f13bbbc9578242a44953eec81cfb27d4,
+        type: 3}
+      propertyPath: turnAxis2.m_Action.m_SingletonActionBindings.Array.data[0].m_Id
+      value: 829b9643-a868-4811-b472-b4fdadb714ae
+      objectReference: {fileID: 0}
+    - target: {fileID: 3395973213855612963, guid: f13bbbc9578242a44953eec81cfb27d4,
+        type: 3}
+      propertyPath: turnAxis2.m_Action.m_SingletonActionBindings.Array.data[0].m_Path
+      value: <OculusTouchController>/menu
+      objectReference: {fileID: 0}
+    - target: {fileID: 3395973213855612963, guid: f13bbbc9578242a44953eec81cfb27d4,
+        type: 3}
+      propertyPath: turnAxis2.m_Action.m_SingletonActionBindings.Array.data[0].m_Action
+      value: Turn Axis 2
       objectReference: {fileID: 0}
     - target: {fileID: 3448467477898723317, guid: f13bbbc9578242a44953eec81cfb27d4,
         type: 3}
@@ -19350,6 +19401,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 633288616}
+    - targetCorrespondingSourceObject: {fileID: 7668830299185360541, guid: f13bbbc9578242a44953eec81cfb27d4,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 633288619}
     - targetCorrespondingSourceObject: {fileID: 7668830300499184784, guid: f13bbbc9578242a44953eec81cfb27d4,
         type: 3}
       insertIndex: -1
