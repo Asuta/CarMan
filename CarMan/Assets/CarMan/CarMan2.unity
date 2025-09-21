@@ -20863,6 +20863,19 @@ MonoBehaviour:
       m_Flags: 0
     m_Reference: {fileID: -6608828962120449096, guid: ea9500ae32862c949b420c59682d02ed,
       type: 3}
+  RightSecondButton:
+    m_UseReference: 1
+    m_Action:
+      m_Name: Right Second Button
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: 413799de-f7a2-40d8-aef5-72b739eedf0b
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_Reference: {fileID: 2123278835456677422, guid: ea9500ae32862c949b420c59682d02ed,
+      type: 3}
   isHolding: 0
   coffeelidOne: {fileID: 1742620601}
   coffeelidTwo: {fileID: 128112306}
@@ -21106,7 +21119,7 @@ Transform:
   m_GameObject: {fileID: 301715546}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: 0.6084182, w: 0.79361665}
-  m_LocalPosition: {x: -0.0133, y: 0.1053, z: -0.0000010728836}
+  m_LocalPosition: {x: -0.0129, y: 0.0948, z: -0.0000010728836}
   m_LocalScale: {x: 0.046849705, y: 0.008318542, z: 0.046353515}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -21739,7 +21752,7 @@ Transform:
   m_GameObject: {fileID: 411969919}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.070219, z: 0}
+  m_LocalPosition: {x: 0, y: 0.0643, z: 0}
   m_LocalScale: {x: 0.050657947, y: 0.016834483, z: 0.046353515}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -21830,6 +21843,7 @@ GameObject:
   - component: {fileID: 424028395}
   - component: {fileID: 424028394}
   - component: {fileID: 424028392}
+  - component: {fileID: 424028399}
   - component: {fileID: 424028398}
   m_Layer: 0
   m_Name: MedicineBottle
@@ -21865,7 +21879,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 424028390}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3b6b1ed6f9a06b94ca7d454f278a072a, type: 3}
   m_Name: 
@@ -21883,6 +21897,18 @@ MonoBehaviour:
       m_Flags: 0
     m_Reference: {fileID: -6608828962120449096, guid: ea9500ae32862c949b420c59682d02ed,
       type: 3}
+  RightSecondButton:
+    m_UseReference: 0
+    m_Action:
+      m_Name: Right Second Button
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: 63ea7235-5183-4c34-919a-467e71458ec8
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_Reference: {fileID: 0}
   isHolding: 0
   coffeelidOne: {fileID: 411969919}
   coffeelidTwo: {fileID: 301715546}
@@ -22138,8 +22164,8 @@ MonoBehaviour:
   onGrab:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 424028392}
-        m_TargetAssemblyTypeName: Coffee, Assembly-CSharp
+      - m_Target: {fileID: 424028398}
+        m_TargetAssemblyTypeName: FixedGrabObject, Assembly-CSharp
         m_MethodName: OnGrabObject
         m_Mode: 1
         m_Arguments:
@@ -22150,8 +22176,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 424028398}
-        m_TargetAssemblyTypeName: FixedGrabObject, Assembly-CSharp
+      - m_Target: {fileID: 424028399}
+        m_TargetAssemblyTypeName: MedicineBottle, Assembly-CSharp
         m_MethodName: OnGrabObject
         m_Mode: 1
         m_Arguments:
@@ -22165,8 +22191,8 @@ MonoBehaviour:
   onRelease:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 424028392}
-        m_TargetAssemblyTypeName: Coffee, Assembly-CSharp
+      - m_Target: {fileID: 424028398}
+        m_TargetAssemblyTypeName: FixedGrabObject, Assembly-CSharp
         m_MethodName: OnReleaseObject
         m_Mode: 1
         m_Arguments:
@@ -22177,8 +22203,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 424028398}
-        m_TargetAssemblyTypeName: FixedGrabObject, Assembly-CSharp
+      - m_Target: {fileID: 424028399}
+        m_TargetAssemblyTypeName: MedicineBottle, Assembly-CSharp
         m_MethodName: OnReleaseObject
         m_Mode: 1
         m_Arguments:
@@ -22245,6 +22271,48 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   FixedPoint: {fileID: 1906927830}
+--- !u!114 &424028399
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 424028390}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b6c193013215e243b3dcc5c12881ae3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LeftSecondButton:
+    m_UseReference: 1
+    m_Action:
+      m_Name: Left Second Button
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: fa01279a-533d-46c9-9a41-e58c73be0c76
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_Reference: {fileID: -6608828962120449096, guid: ea9500ae32862c949b420c59682d02ed,
+      type: 3}
+  RightSecondButton:
+    m_UseReference: 1
+    m_Action:
+      m_Name: Right Second Button
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: a595cd82-9f69-43f7-9f91-c41c968e0983
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_Reference: {fileID: 2123278835456677422, guid: ea9500ae32862c949b420c59682d02ed,
+      type: 3}
+  isHolding: 0
+  coffeelidOne: {fileID: 411969919}
+  coffeelidTwo: {fileID: 301715546}
+  isOpen: 0
 --- !u!1 &444131935
 GameObject:
   m_ObjectHideFlags: 0
@@ -22574,7 +22642,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 478870919}
   serializedVersion: 4
-  m_Mass: 1
+  m_Mass: 0.1
   m_Drag: 0
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -22851,7 +22919,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 517976868}
   serializedVersion: 4
-  m_Mass: 1
+  m_Mass: 0.1
   m_Drag: 0
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -24261,7 +24329,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1005361031}
   serializedVersion: 4
-  m_Mass: 1
+  m_Mass: 0.1
   m_Drag: 0
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}

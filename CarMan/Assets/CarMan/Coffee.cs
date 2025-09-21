@@ -7,6 +7,7 @@ using UnityEngine.InputSystem;
 public class Coffee : MonoBehaviour
 {
     public InputActionProperty LeftSecondButton;
+    public InputActionProperty RightSecondButton;
     public bool isHolding;
     public GameObject coffeelidOne;
     public GameObject coffeelidTwo;
@@ -30,12 +31,13 @@ public class Coffee : MonoBehaviour
     void Start()
     {
         LeftSecondButton.action.Enable();
+        RightSecondButton.action.Enable();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (LeftSecondButton.action.WasPressedThisFrame())
+        if (LeftSecondButton.action.WasPressedThisFrame() || RightSecondButton.action.WasPressedThisFrame())
         {
             SwitchLid();
         }
