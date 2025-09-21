@@ -11,6 +11,7 @@ public class HandBox : MonoBehaviour
     
     private bool isRotating = false;
     private Coroutine currentRotationCoroutine;
+    private bool isOpen = false;
     
     // 旋转速度参数
     public float rotationDuration = 1.0f;
@@ -84,5 +85,19 @@ public class HandBox : MonoBehaviour
         
         isRotating = false;
         currentRotationCoroutine = null;
+    }
+
+    [Button("ToggleBox")]
+    public void ToggleBox()
+    {
+        if (isOpen)
+        {
+            CloseBox();
+        }
+        else
+        {
+            OpenBox();
+        }
+        isOpen = !isOpen;
     }
 }

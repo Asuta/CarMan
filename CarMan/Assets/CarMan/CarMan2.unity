@@ -20336,8 +20336,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   axisCube: {fileID: 47145186}
-  rotationSpeed: 2
-  smoothTime: 0.3
+  rotationDuration: 1
 --- !u!114 &182622573
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22317,7 +22316,7 @@ PrefabInstance:
     - target: {fileID: 7380761033440643623, guid: 9b33a0962b32a13448b8017d7892eed8,
         type: 3}
       propertyPath: OnPressed.m_PersistentCalls.m_Calls.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7380761033440643623, guid: 9b33a0962b32a13448b8017d7892eed8,
         type: 3}
@@ -22328,7 +22327,7 @@ PrefabInstance:
         type: 3}
       propertyPath: OnPressed.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
-      objectReference: {fileID: 780239155}
+      objectReference: {fileID: 175617692}
     - target: {fileID: 7380761033440643623, guid: 9b33a0962b32a13448b8017d7892eed8,
         type: 3}
       propertyPath: OnPressed.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
@@ -22337,12 +22336,12 @@ PrefabInstance:
     - target: {fileID: 7380761033440643623, guid: 9b33a0962b32a13448b8017d7892eed8,
         type: 3}
       propertyPath: OnPressed.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: OnWindButton
+      value: ToggleBox
       objectReference: {fileID: 0}
     - target: {fileID: 7380761033440643623, guid: 9b33a0962b32a13448b8017d7892eed8,
         type: 3}
       propertyPath: OnPressed.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
-      value: WindButton, Assembly-CSharp
+      value: HandBox, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 7380761033440643623, guid: 9b33a0962b32a13448b8017d7892eed8,
         type: 3}
