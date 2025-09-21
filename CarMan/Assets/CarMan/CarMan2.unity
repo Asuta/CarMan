@@ -1624,9 +1624,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 5
   pointA: {fileID: 27233526}
-  pointB: {fileID: 0}
-  leftTarget: {fileID: 0}
-  rightTarget: {fileID: 0}
 --- !u!1 &1020676701 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7668830300499184784, guid: f13bbbc9578242a44953eec81cfb27d4,

@@ -10,36 +10,41 @@ public class Cleaner : MonoBehaviour
     public enum TaskState
     {
         Idle,
-        Move
+        MoveToA,
+        ShakeOne
     }
 
     // 当前状态
     private TaskState currentState = TaskState.Idle;
+    private TaskState previousState;
     
     // 移动相关参数
     public float moveSpeed = 5f;
+    public Transform pointA;
+
+
+    public string nowState = "";
     
     // Start is called before the first frame update
     void Start()
     {
-        // 初始化逻辑
+        // 初始化 previousState
+        previousState = currentState;
     }
 
     // Update is called once per frame
     void Update()
     {
-        // 保存前一帧的状态
-        TaskState previousState = currentState;
-        
+        nowState = currentState.ToString();
         //test
         // 按空格键切换Idle状态和Move状态
         if (Input.GetKeyDown(KeyCode.Space))
         {
             if (currentState == TaskState.Idle)
             {
-                currentState = TaskState.Move;
+                currentState = TaskState.MoveToA;
             }
-            else if (currentState == TaskState.Move)
+            else if (currentState == TaskState.MoveToA)
             {
                 currentState = TaskState.Idle;
             }
@@ -52,6 +57,20 @@ public class Cleaner : MonoBehaviour
             MyEvent.SystemStartEvent.Invoke();
         }
         
+        // 根据当前状态执行相应的逻辑
+        switch (currentState)
+        {
+            case TaskState.Idle:
+                Idle();
+                break;
+            case TaskState.MoveToA:
+                ExecuteMove();
+                break;
+            case TaskState.ShakeOne:
+                ExecuteShakeOne();
+                break;
+        }
+        
         // 检测状态变化，处理状态进入/退出
         if (previousState != currentState)
         {
@@ -59,17 +78,9 @@ public class Cleaner : MonoBehaviour
             HandleStateExit(previousState);
             // 处理进入新状态
             HandleStateEnter(currentState);
-        }
-        
-        // 根据当前状态执行相应的逻辑
-        switch (currentState)
-        {
-            case TaskState.Idle:
-                Idle();
-                break;
-            case TaskState.Move:
-                ExecuteMove();
-                break;
+            
+            // 更新 previousState
+            previousState = currentState;
         }
     }
 
@@ -88,7 +99,24 @@ public class Cleaner : MonoBehaviour
 
     private void ExecuteMove()
     {
-        Debug.Log("Move");
+        // 计算朝向A点的方向
+        Vector3 direction = (pointA.position - transform.position).normalized;
+        
+        // 朝向A点移动
+        transform.position += direction * moveSpeed * Time.deltaTime;
+        
+        // 检查是否到达A点（使用一个小的阈值来判断是否到达）
+        float distance = Vector3.Distance(transform.position, pointA.position);
+        if (distance < 0.1f) // 0.1f作为到达的阈值
+        {
+            // 到达A点，切换到ShakeOne状态
+            currentState = TaskState.ShakeOne;
+        }
+    }
+
+    private void ExecuteShakeOne()
+    {
+        // ShakeOne 状态的执行逻辑
     }
     
     #endregion
@@ -103,8 +131,11 @@ public class Cleaner : MonoBehaviour
             case TaskState.Idle:
                 OnEnterIdle();
                 break;
-            case TaskState.Move:
+            case TaskState.MoveToA:
                 OnEnterMove();
+                break;
+            case TaskState.ShakeOne:
+                OnEnterShakeOne();
                 break;
         }
     }
@@ -117,8 +148,11 @@ public class Cleaner : MonoBehaviour
             case TaskState.Idle:
                 OnExitIdle();
                 break;
-            case TaskState.Move:
+            case TaskState.MoveToA:
                 OnExitMove();
+                break;
+            case TaskState.ShakeOne:
+                OnExitShakeOne();
                 break;
         }
     }
@@ -153,6 +187,19 @@ public class Cleaner : MonoBehaviour
     {
         Debug.Log("离开Move状态");
         // 在这里添加离开Move状态时的逻辑
+    }
+
+    // ShakeOne状态进入/退出方法
+    private void OnEnterShakeOne()
+    {
+        Debug.Log("进入ShakeOne状态");
+        // 在这里添加进入ShakeOne状态时的逻辑
+    }
+
+    private void OnExitShakeOne()
+    {
+        Debug.Log("离开ShakeOne状态");
+        // 在这里添加离开ShakeOne状态时的逻辑
     }
     
     #endregion
