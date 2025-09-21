@@ -11,7 +11,9 @@ public class Cleaner : MonoBehaviour
     {
         Idle,
         MoveToA,
-        ShakeOne
+        ShakeOne,
+        ShakeTwo,
+        GoBackToB
     }
 
     // 当前状态
@@ -21,6 +23,15 @@ public class Cleaner : MonoBehaviour
     // 移动相关参数
     public float moveSpeed = 5f;
     public Transform pointA;
+    public Transform pointB;
+
+    // 摇晃相关参数
+    public float shakeAmplitude = 0.5f; // 摇晃的幅度
+    public float shakeSpeed = 2f;      // 摇晃的速度
+
+    // 摇晃状态变量
+    private Vector3 shakeOrigin;       // 摇晃的原始位置
+    private float shakeTime = 0f;      // 摇晃时间累加器
 
 
     public string nowState = "";
@@ -53,12 +64,7 @@ public class Cleaner : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.A))
-        {
-            //invoke event
-            Debug.Log("Invoke SystemStartEvent");
-            MyEvent.SystemStartEvent.Invoke();
-        }
+
 
         // 根据当前状态执行相应的逻辑
         switch (currentState)
@@ -71,6 +77,9 @@ public class Cleaner : MonoBehaviour
                 break;
             case TaskState.ShakeOne:
                 ExecuteShakeOne();
+                break;
+            case TaskState.ShakeTwo:
+                ExecuteShakeTwo();
                 break;
         }
 
@@ -85,12 +94,24 @@ public class Cleaner : MonoBehaviour
             // 更新 previousState
             previousState = currentState;
         }
+
+
+        //test==================
+        if (Input.GetKeyDown(KeyCode.A))
+        {
+            //invoke event
+            Debug.Log("Invoke SystemStartEvent");
+            MyEvent.SystemStartEvent.Invoke();
+        }
+
+        if (Input.GetKeyDown(KeyCode.B))
+        {
+            //invoke event
+            Debug.Log("Invoke WindshieldEvent");
+            MyEvent.WindshieldEvent.Invoke();
+        }
     }
 
-    private void Move()
-    {
-        Debug.Log("Move");
-    }
 
     #region 状态方法
 
@@ -120,6 +141,47 @@ public class Cleaner : MonoBehaviour
     private void ExecuteShakeOne()
     {
         // ShakeOne 状态的执行逻辑
+        // 实现前后摇晃效果
+
+        // 如果是第一次进入摇晃状态，记录原始位置
+        if (shakeTime == 0f)
+        {
+            shakeOrigin = transform.position;
+        }
+
+        // 累加时间
+        shakeTime += Time.deltaTime * shakeSpeed;
+
+        // 使用正弦函数计算前后偏移
+        float offsetZ = Mathf.Sin(shakeTime) * shakeAmplitude;
+
+        // 应用偏移到物体的位置
+        Vector3 newPosition = shakeOrigin;
+        newPosition.z += offsetZ;
+        transform.position = newPosition;
+    }
+
+    private void ExecuteShakeTwo()
+    {
+        // ShakeTwo 状态的执行逻辑
+        // 实现前后摇晃效果，速度是ShakeOne的两倍
+
+        // 如果是第一次进入摇晃状态，记录原始位置
+        if (shakeTime == 0f)
+        {
+            shakeOrigin = transform.position;
+        }
+
+        // 累加时间，速度是ShakeOne的两倍
+        shakeTime += Time.deltaTime * shakeSpeed * 2f;
+
+        // 使用正弦函数计算前后偏移
+        float offsetZ = Mathf.Sin(shakeTime) * shakeAmplitude;
+
+        // 应用偏移到物体的位置
+        Vector3 newPosition = shakeOrigin;
+        newPosition.z += offsetZ;
+        transform.position = newPosition;
     }
 
     #endregion
@@ -140,6 +202,9 @@ public class Cleaner : MonoBehaviour
             case TaskState.ShakeOne:
                 OnEnterShakeOne();
                 break;
+            case TaskState.ShakeTwo:
+                OnEnterShakeTwo();
+                break;
         }
     }
 
@@ -156,6 +221,9 @@ public class Cleaner : MonoBehaviour
                 break;
             case TaskState.ShakeOne:
                 OnExitShakeOne();
+                break;
+            case TaskState.ShakeTwo:
+                OnExitShakeTwo();
                 break;
         }
     }
@@ -195,12 +263,31 @@ public class Cleaner : MonoBehaviour
     {
         Debug.Log("进入ShakeOne状态");
         // 在这里添加进入ShakeOne状态时的逻辑
+        // 重置摇晃时间，确保每次进入状态时从开始摇晃
+        shakeTime = 0f;
+        MyEvent.WindshieldEvent.AddListener(OnWindshieldEventTriggered);
     }
 
     private void OnExitShakeOne()
     {
         Debug.Log("离开ShakeOne状态");
         // 在这里添加离开ShakeOne状态时的逻辑
+        MyEvent.WindshieldEvent.RemoveListener(OnWindshieldEventTriggered);
+    }
+
+    private void OnWindshieldEventTriggered()
+    {
+        Debug.Log("WindshieldEvent被触发，当前状态是ShakeOne");
+        // 在这里添加WindshieldEvent触发时的逻辑
+        currentState = TaskState.ShakeTwo;
+    }
+
+    private void OnEnterShakeTwo()
+    {
+        Debug.Log("进入ShakeTwo状态");
+        // 在这里添加进入ShakeTwo状态时的逻辑
+        // 重置摇晃时间，确保每次进入状态时从开始摇晃
+        shakeTime = 0f;
     }
 
     #endregion
@@ -223,6 +310,12 @@ public class Cleaner : MonoBehaviour
         // 在这里添加SystemStartEvent触发时的逻辑
         // 例如：切换到其他状态
         currentState = TaskState.MoveToA;
+    }
+
+    private void OnExitShakeTwo()
+    {
+        Debug.Log("离开ShakeTwo状态");
+        // 在这里添加离开ShakeTwo状态时的逻辑
     }
 
     #endregion
