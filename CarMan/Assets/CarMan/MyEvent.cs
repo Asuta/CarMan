@@ -9,7 +9,8 @@ public static class MyEvent
     public static UnityEvent WindshieldEvent = new UnityEvent();
     public static UnityEvent HonkingEvent = new UnityEvent();
     public static UnityEvent EatMedicineEvent = new UnityEvent();
-}
+    public static UnityEvent AddCoinEvent = new UnityEvent();
+}  
 
 
 
