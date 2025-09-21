@@ -17,19 +17,22 @@ public class Cleaner : MonoBehaviour
     // 当前状态
     private TaskState currentState = TaskState.Idle;
     private TaskState previousState;
-    
+
     // 移动相关参数
     public float moveSpeed = 5f;
     public Transform pointA;
 
 
     public string nowState = "";
-    
+
     // Start is called before the first frame update
     void Start()
     {
         // 初始化 previousState
+
         previousState = currentState;
+        HandleStateEnter(currentState);
+
     }
 
     // Update is called once per frame
@@ -56,12 +59,12 @@ public class Cleaner : MonoBehaviour
             Debug.Log("Invoke SystemStartEvent");
             MyEvent.SystemStartEvent.Invoke();
         }
-        
+
         // 根据当前状态执行相应的逻辑
         switch (currentState)
         {
             case TaskState.Idle:
-                Idle();
+                ExecuteIdle();
                 break;
             case TaskState.MoveToA:
                 ExecuteMove();
@@ -70,7 +73,7 @@ public class Cleaner : MonoBehaviour
                 ExecuteShakeOne();
                 break;
         }
-        
+
         // 检测状态变化，处理状态进入/退出
         if (previousState != currentState)
         {
@@ -78,7 +81,7 @@ public class Cleaner : MonoBehaviour
             HandleStateExit(previousState);
             // 处理进入新状态
             HandleStateEnter(currentState);
-            
+
             // 更新 previousState
             previousState = currentState;
         }
@@ -91,7 +94,7 @@ public class Cleaner : MonoBehaviour
 
     #region 状态方法
 
-    private void Idle()
+    private void ExecuteIdle()
     {
         // 在Idle状态中等待事件触发
         // 事件触发时会调用对应的处理方法
@@ -101,10 +104,10 @@ public class Cleaner : MonoBehaviour
     {
         // 计算朝向A点的方向
         Vector3 direction = (pointA.position - transform.position).normalized;
-        
+
         // 朝向A点移动
         transform.position += direction * moveSpeed * Time.deltaTime;
-        
+
         // 检查是否到达A点（使用一个小的阈值来判断是否到达）
         float distance = Vector3.Distance(transform.position, pointA.position);
         if (distance < 0.1f) // 0.1f作为到达的阈值
@@ -118,11 +121,11 @@ public class Cleaner : MonoBehaviour
     {
         // ShakeOne 状态的执行逻辑
     }
-    
+
     #endregion
 
     #region 状态进入/退出方法
-    
+
     // 处理进入状态
     private void HandleStateEnter(TaskState state)
     {
@@ -162,7 +165,6 @@ public class Cleaner : MonoBehaviour
     {
         Debug.Log("进入Idle状态");
         // 注册事件监听器
-        MyEvent.LoadEvent.AddListener(OnLoadEventTriggered);
         MyEvent.SystemStartEvent.AddListener(OnSystemStartEventTriggered);
         Debug.Log("已注册事件监听器");
     }
@@ -171,7 +173,6 @@ public class Cleaner : MonoBehaviour
     {
         Debug.Log("离开Idle状态");
         // 取消注册事件监听器
-        MyEvent.LoadEvent.RemoveListener(OnLoadEventTriggered);
         MyEvent.SystemStartEvent.RemoveListener(OnSystemStartEventTriggered);
         Debug.Log("已取消注册事件监听器");
     }
@@ -201,11 +202,11 @@ public class Cleaner : MonoBehaviour
         Debug.Log("离开ShakeOne状态");
         // 在这里添加离开ShakeOne状态时的逻辑
     }
-    
+
     #endregion
 
     #region 事件处理方法
-    
+
     // LoadEvent事件触发时的处理方法
     private void OnLoadEventTriggered()
     {
@@ -221,9 +222,9 @@ public class Cleaner : MonoBehaviour
         Debug.Log("SystemStartEvent被触发，当前状态是Idle");
         // 在这里添加SystemStartEvent触发时的逻辑
         // 例如：切换到其他状态
-        // currentState = TaskState.MoveToB;
+        currentState = TaskState.MoveToA;
     }
-    
+
     #endregion
 
     // 在对象销毁时取消注册事件监听器，避免内存泄漏
