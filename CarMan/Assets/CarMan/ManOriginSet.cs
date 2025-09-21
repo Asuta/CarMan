@@ -147,6 +147,11 @@ public class ManOriginSet : MonoBehaviour
     }
     void Update()
     {
+
+    }
+
+    void LateUpdate()
+    {
         // 如果处于跟踪模式，更新父物体的位置和旋转以保持与目标物体的相对关系
         if (isTrackingMode && fatherT != null && sonT != null && targetT != null)
         {
