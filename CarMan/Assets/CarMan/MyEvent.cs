@@ -5,6 +5,7 @@ using UnityEngine.Events;
 public static class MyEvent
 {
     public static UnityEvent LoadEvent = new UnityEvent();
+    public static UnityEvent SystemStartEvent = new UnityEvent();
 }
 
 
