@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -17,6 +18,12 @@ public class Coffee : MonoBehaviour
     private Coroutine coolingCoroutine;
     private float cloudSpawnTimer = 0f;
     private float cloudSpawnInterval = 0.5f;
+    public AudioSource beHotHurtSound;
+    public AudioClip beHotHurtSoundClip;
+    public AudioClip beEmptyHurtSoundClip;
+    
+
+    public bool isEmpty;
 
 
     // Start is called before the first frame update
@@ -38,13 +45,13 @@ public class Coffee : MonoBehaviour
         {
             // 更新云生成计时器
             cloudSpawnTimer += Time.deltaTime;
-            
+
             // 检查是否达到生成间隔
             if (cloudSpawnTimer >= cloudSpawnInterval)
             {
                 // 在cloudPoint位置生成cloudPrefab
                 Instantiate(cloudPrefab, cloudPoint.position, cloudPoint.rotation);
-                
+
                 // 重置计时器
                 cloudSpawnTimer = 0f;
             }
@@ -72,7 +79,7 @@ public class Coffee : MonoBehaviour
                 coffeelidOne.SetActive(false);
                 coffeelidTwo.SetActive(true);
                 isOpen = true;
-                
+
                 // 开始冷却计时
                 StartCoolingTimer();
             }
@@ -82,7 +89,7 @@ public class Coffee : MonoBehaviour
                 coffeelidOne.SetActive(true);
                 coffeelidTwo.SetActive(false);
                 isOpen = false;
-                
+
                 // 停止冷却计时
                 StopCoolingTimer();
             }
@@ -101,16 +108,16 @@ public class Coffee : MonoBehaviour
     {
         isHolding = false;
     }
-    
+
     private void StartCoolingTimer()
     {
         // 停止之前可能存在的协程
         StopCoolingTimer();
-        
+
         // 启动新的协程
         coolingCoroutine = StartCoroutine(CoolingTimer());
     }
-    
+
     private void StopCoolingTimer()
     {
         if (coolingCoroutine != null)
@@ -119,16 +126,38 @@ public class Coffee : MonoBehaviour
             coolingCoroutine = null;
         }
     }
-    
+
     private IEnumerator CoolingTimer()
     {
         // 等待5秒
         yield return new WaitForSeconds(5.0f);
-        
+
         // 5秒后将咖啡设置为不热
         isHot = false;
-        
+
         // 清空协程引用
         coolingCoroutine = null;
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("PlayerHead"))
+        {
+            if (isOpen)
+            {
+                if (isHot)
+                {
+                    Debug.Log("Coffee is hot");
+                    beHotHurtSound.PlayOneShot(beHotHurtSoundClip);
+
+                }
+                else
+                {
+                    Debug.Log("Coffee is not hot");
+                    isEmpty = true;
+                    beHotHurtSound.PlayOneShot(beEmptyHurtSoundClip);
+                }
+            }
+        }
     }
 }
