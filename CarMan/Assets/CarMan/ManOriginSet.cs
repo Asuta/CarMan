@@ -158,13 +158,13 @@ public class ManOriginSet : MonoBehaviour
             fatherT.SetPositionAndRotation(targetFatherPosition, targetFatherRotation);
         }
 
-        // 空格键测试功能：退出跟踪模式 -> 对齐 -> 重新进入跟踪模式
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            ExitTrackingMode();
-            AlignChildToTargetByMovingParent();
-            EnterTrackingMode();
-        }
+        // // 空格键测试功能：退出跟踪模式 -> 对齐 -> 重新进入跟踪模式
+        // if (Input.GetKeyDown(KeyCode.Space))
+        // {
+        //     ExitTrackingMode();
+        //     AlignChildToTargetByMovingParent();
+        //     EnterTrackingMode();
+        // }
 
         //input
         // 使用现成的方法检测按钮按下的瞬间
