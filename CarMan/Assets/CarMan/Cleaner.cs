@@ -81,6 +81,9 @@ public class Cleaner : MonoBehaviour
             case TaskState.ShakeTwo:
                 ExecuteShakeTwo();
                 break;
+            case TaskState.GoBackToB:
+                ExecuteGoBackToB();
+                break;
         }
 
         // 检测状态变化，处理状态进入/退出
@@ -109,6 +112,13 @@ public class Cleaner : MonoBehaviour
             //invoke event
             Debug.Log("Invoke WindshieldEvent");
             MyEvent.WindshieldEvent.Invoke();
+        }
+
+        if (Input.GetKeyDown(KeyCode.C))
+        {
+            //invoke event
+            Debug.Log("Invoke HonkingEvent");
+            MyEvent.HonkingEvent.Invoke();
         }
     }
 
@@ -184,6 +194,26 @@ public class Cleaner : MonoBehaviour
         transform.position = newPosition;
     }
 
+    private void ExecuteGoBackToB()
+    {
+        // GoBackToB 状态的执行逻辑
+        // 实现回到B点的功能
+        
+        // 计算朝向B点的方向
+        Vector3 direction = (pointB.position - transform.position).normalized;
+        
+        // 朝向B点移动
+        transform.position += direction * moveSpeed * Time.deltaTime;
+        
+        // 检查是否到达B点（使用一个小的阈值来判断是否到达）
+        float distance = Vector3.Distance(transform.position, pointB.position);
+        if (distance < 0.1f) // 0.1f作为到达的阈值
+        {
+            // 到达B点，切换到Idle状态
+            currentState = TaskState.Idle;
+        }
+    }
+
     #endregion
 
     #region 状态进入/退出方法
@@ -205,6 +235,9 @@ public class Cleaner : MonoBehaviour
             case TaskState.ShakeTwo:
                 OnEnterShakeTwo();
                 break;
+            case TaskState.GoBackToB:
+                OnEnterGoBackToB();
+                break;
         }
     }
 
@@ -224,6 +257,9 @@ public class Cleaner : MonoBehaviour
                 break;
             case TaskState.ShakeTwo:
                 OnExitShakeTwo();
+                break;
+            case TaskState.GoBackToB:
+                OnExitGoBackToB();
                 break;
         }
     }
@@ -288,6 +324,9 @@ public class Cleaner : MonoBehaviour
         // 在这里添加进入ShakeTwo状态时的逻辑
         // 重置摇晃时间，确保每次进入状态时从开始摇晃
         shakeTime = 0f;
+        // 监听HonkingEvent事件
+        MyEvent.HonkingEvent.AddListener(OnHonkingEventTriggered);
+        Debug.Log("已注册HonkingEvent事件监听器");
     }
 
     #endregion
@@ -316,6 +355,29 @@ public class Cleaner : MonoBehaviour
     {
         Debug.Log("离开ShakeTwo状态");
         // 在这里添加离开ShakeTwo状态时的逻辑
+        // 取消注册HonkingEvent事件监听器
+        MyEvent.HonkingEvent.RemoveListener(OnHonkingEventTriggered);
+        Debug.Log("已取消注册HonkingEvent事件监听器");
+    }
+
+    private void OnEnterGoBackToB()
+    {
+        Debug.Log("进入GoBackToB状态");
+        // 在这里添加进入GoBackToB状态时的逻辑
+    }
+
+    private void OnExitGoBackToB()
+    {
+        Debug.Log("离开GoBackToB状态");
+        // 在这里添加离开GoBackToB状态时的逻辑
+    }
+
+    private void OnHonkingEventTriggered()
+    {
+        Debug.Log("HonkingEvent被触发，当前状态是ShakeTwo");
+        // 在这里添加HonkingEvent触发时的逻辑
+        // 切换到GoBackToB状态
+        currentState = TaskState.GoBackToB;
     }
 
     #endregion
