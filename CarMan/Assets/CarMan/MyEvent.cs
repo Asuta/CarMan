@@ -12,6 +12,7 @@ public static class MyEvent
     public static UnityEvent AddCoinEvent = new UnityEvent();
     public static UnityEvent CoinCollectedEvent = new UnityEvent(); // 硬币集齐事件
     public static UnityEvent WakeUpManEvent = new UnityEvent(); // 叫醒男人事件
+    public static UnityEvent EyeBlackFadeInEvent = new UnityEvent(); // 黑眼睛渐变显示事件
 }
 
 

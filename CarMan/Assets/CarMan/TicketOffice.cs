@@ -34,6 +34,9 @@ public class TicketOffice : MonoBehaviour
             rodAxis.Open();
             hasOpened = true;
             Debug.LogError("Ticket count reached 5 and man is awake! Opening rod axis.");
+            
+            // 启动协程，等待3秒后触发眼睛渐变事件
+            StartCoroutine(TriggerEyeBlackFadeInAfterDelay());
         }
         else if (ticketCount >= 5 && !isManAwake && !hasOpened)
         {
@@ -50,6 +53,9 @@ public class TicketOffice : MonoBehaviour
             rodAxis.Open();
             hasOpened = true;
             Debug.LogError("Conditions met! Opening rod axis.");
+            
+            // 启动协程，等待3秒后触发眼睛渐变事件
+            StartCoroutine(TriggerEyeBlackFadeInAfterDelay());
         }
     }
 
@@ -76,5 +82,15 @@ public class TicketOffice : MonoBehaviour
     {
         MyEvent.AddCoinEvent.RemoveListener(AddTicket);
         MyEvent.WakeUpManEvent.RemoveListener(OnManWokeUp);
+    }
+    
+    /// <summary>
+    /// 等待3秒后触发眼睛渐变事件
+    /// </summary>
+    private IEnumerator TriggerEyeBlackFadeInAfterDelay()
+    {
+        yield return new WaitForSeconds(3f);
+        MyEvent.EyeBlackFadeInEvent.Invoke();
+        Debug.LogError("Eye black fade in event triggered after 3 seconds!");
     }
 }

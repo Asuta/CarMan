@@ -15,24 +15,6 @@ MonoBehaviour:
   pages:
   - items:
     - globalId:
-        globalObjectIdString: GlobalObjectId_V1-1-1551acbe06158c74e8ab2f58f9b373dc-102900000-0
-      _typeString: UnityEditor.SceneAsset, UnityEditor.CoreModule, Version=0.0.0.0,
-        Culture=neutral, PublicKeyToken=null
-      _obj: {fileID: 102900000, guid: 1551acbe06158c74e8ab2f58f9b373dc, type: 3}
-      isSceneGameObject: 0
-      isFolder: 0
-      isAsset: 1
-      _id: 1039178898
-    - globalId:
-        globalObjectIdString: GlobalObjectId_V1-1-f6e86333539f41342aef3f213b616951-102900000-0
-      _typeString: UnityEditor.SceneAsset, UnityEditor.CoreModule, Version=0.0.0.0,
-        Culture=neutral, PublicKeyToken=null
-      _obj: {fileID: 102900000, guid: f6e86333539f41342aef3f213b616951, type: 3}
-      isSceneGameObject: 0
-      isFolder: 0
-      isAsset: 1
-      _id: 1051258349
-    - globalId:
         globalObjectIdString: GlobalObjectId_V1-1-ea9500ae32862c949b420c59682d02ed-17502115434096073164-0
       _typeString: UnityEngine.InputSystem.InputActionAsset, Unity.InputSystem, Version=1.14.0.0,
         Culture=neutral, PublicKeyToken=null
@@ -42,6 +24,24 @@ MonoBehaviour:
       isFolder: 0
       isAsset: 1
       _id: 1057839407
+    - globalId:
+        globalObjectIdString: GlobalObjectId_V1-1-1551acbe06158c74e8ab2f58f9b373dc-102900000-0
+      _typeString: UnityEditor.SceneAsset, UnityEditor.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      _obj: {fileID: 102900000, guid: 1551acbe06158c74e8ab2f58f9b373dc, type: 3}
+      isSceneGameObject: 0
+      isFolder: 0
+      isAsset: 1
+      _id: 1039178898
+    - globalId:
+        globalObjectIdString: GlobalObjectId_V1-1-9504c37c5af5ac2499e04db76cc80f86-102900000-0
+      _typeString: UnityEditor.DefaultAsset, UnityEditor.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      _obj: {fileID: 102900000, guid: 9504c37c5af5ac2499e04db76cc80f86, type: 3}
+      isSceneGameObject: 0
+      isFolder: 1
+      isAsset: 0
+      _id: 1041878201
     name: Page 1
     _id: 1058737613
   - items: []
