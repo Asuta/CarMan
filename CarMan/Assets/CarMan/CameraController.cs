@@ -1,0 +1,42 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using VInspector;
+
+public class CameraController : MonoBehaviour
+{
+    public Camera mainCamera;
+    // Start is called before the first frame update
+    void Start()
+    {
+        
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        
+    }
+
+    /// <summary>
+    /// 设置相机视图为全黑模式
+    /// 1. 可视图层设置为Nothing（什么都看不到）
+    /// 2. 背景设置为纯色块
+    /// 3. 背景颜色设置为黑色
+    /// </summary>
+    [Button("SetCameraToBlackMode")]
+    public void SetCameraToBlackMode()
+    {
+        if (mainCamera != null)
+        {
+            // 设置可视图层为Nothing（0表示不渲染任何层）
+            mainCamera.cullingMask = 0;
+            
+            // 设置清除标志为纯色
+            mainCamera.clearFlags = CameraClearFlags.SolidColor;
+            
+            // 设置背景颜色为黑色
+            mainCamera.backgroundColor = Color.black;
+        }
+    }
+}
