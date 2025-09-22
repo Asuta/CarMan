@@ -47,6 +47,9 @@ public class EyeBlack : MonoBehaviour
         // 确保最终 alpha 值为 1
         color.a = 1f;
         spriteRenderer.color = color;
+        
+        // 渐变完成后触发相机黑屏模式事件
+        MyEvent.CameraBlackModeEvent.Invoke();
     }
 
     // 清理事件监听器

@@ -9,13 +9,20 @@ public class CameraController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        // 注册相机黑屏模式事件监听
+        MyEvent.CameraBlackModeEvent.AddListener(SetCameraToBlackMode);
     }
 
     // Update is called once per frame
     void Update()
     {
         
+    }
+
+    void OnDestroy()
+    {
+        // 移除相机黑屏模式事件监听
+        MyEvent.CameraBlackModeEvent.RemoveListener(SetCameraToBlackMode);
     }
 
     /// <summary>
