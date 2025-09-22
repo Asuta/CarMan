@@ -18,12 +18,21 @@ public class TextFadeOut : MonoBehaviour
             Color originalColor = textMeshPro.color;
             textMeshPro.color = new Color(originalColor.r, originalColor.g, originalColor.b, 0f);
         }
+        
+        // 注册文字渐变事件监听
+        MyEvent.TextFadeInEvent.AddListener(StartFadeIn);
     }
 
     // Update is called once per frame
     void Update()
     {
         
+    }
+
+    void OnDestroy()
+    {
+        // 移除文字渐变事件监听
+        MyEvent.TextFadeInEvent.RemoveListener(StartFadeIn);
     }
 
     // 启动字体渐变效果（从0到1）

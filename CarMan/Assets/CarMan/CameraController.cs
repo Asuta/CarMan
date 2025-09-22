@@ -36,8 +36,8 @@ public class CameraController : MonoBehaviour
     {
         if (mainCamera != null)
         {
-            // 设置可视图层为Nothing（0表示不渲染任何层）
-            mainCamera.cullingMask = 0;
+            // 设置可视图层为只能看到第13层
+            mainCamera.cullingMask = 1 << 13;
             
             // 设置清除标志为纯色
             mainCamera.clearFlags = CameraClearFlags.SolidColor;
@@ -45,5 +45,8 @@ public class CameraController : MonoBehaviour
             // 设置背景颜色为黑色
             mainCamera.backgroundColor = Color.black;
         }
+        
+        // 触发文字渐变事件
+        MyEvent.TextFadeInEvent.Invoke();
     }
 }

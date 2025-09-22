@@ -14,6 +14,7 @@ public static class MyEvent
     public static UnityEvent WakeUpManEvent = new UnityEvent(); // 叫醒男人事件
     public static UnityEvent EyeBlackFadeInEvent = new UnityEvent(); // 黑眼睛渐变显示事件
     public static UnityEvent CameraBlackModeEvent = new UnityEvent(); // 相机黑屏模式事件
+    public static UnityEvent TextFadeInEvent = new UnityEvent(); // 文字渐变显示事件
 }
 
 
