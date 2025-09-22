@@ -10,6 +10,7 @@ public static class MyEvent
     public static UnityEvent HonkingEvent = new UnityEvent();
     public static UnityEvent EatMedicineEvent = new UnityEvent();
     public static UnityEvent AddCoinEvent = new UnityEvent();
+    public static UnityEvent CoinCollectedEvent = new UnityEvent(); // 硬币集齐事件
 }  
 
 

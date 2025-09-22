@@ -20,6 +20,13 @@ public class TicketOffice : MonoBehaviour
         ticketCount++;
         Debug.LogError("Ticket count: " + ticketCount);
         
+        // 当票数达到5时触发硬币集齐事件
+        if (ticketCount >= 5)
+        {
+            MyEvent.CoinCollectedEvent.Invoke();
+            Debug.LogError("Coin collected event triggered!");
+        }
+        
         // 当票数达到5、男人醒着且尚未触发过打开时，触发RodAxis的Open方法
         if (ticketCount >= 5 && isManAwake && !hasOpened && rodAxis != null)
         {
