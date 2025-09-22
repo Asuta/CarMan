@@ -13,6 +13,7 @@ public class TicketOffice : MonoBehaviour
     void Start()
     {
         MyEvent.AddCoinEvent.AddListener(AddTicket);
+        MyEvent.WakeUpManEvent.AddListener(OnManWokeUp);
     }
 
     private void AddTicket()
@@ -53,6 +54,15 @@ public class TicketOffice : MonoBehaviour
     }
 
     /// <summary>
+    /// 处理男人醒来事件
+    /// </summary>
+    private void OnManWokeUp()
+    {
+        SetManAwake(true);
+        Debug.LogError("Man woke up from event!");
+    }
+    
+    /// <summary>
     /// 设置男人醒着的状态
     /// </summary>
     /// <param name="awake">是否醒着</param>
@@ -60,5 +70,11 @@ public class TicketOffice : MonoBehaviour
     {
         isManAwake = awake;
         Debug.LogError("Man awake state: " + isManAwake);
+    }
+    // 在对象销毁时移除事件监听器
+    private void OnDestroy()
+    {
+        MyEvent.AddCoinEvent.RemoveListener(AddTicket);
+        MyEvent.WakeUpManEvent.RemoveListener(OnManWokeUp);
     }
 }

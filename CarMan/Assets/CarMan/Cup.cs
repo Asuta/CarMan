@@ -11,7 +11,7 @@ public class Cup : MonoBehaviour
         // 订阅硬币集齐事件
         MyEvent.CoinCollectedEvent.AddListener(OnCoinCollected);
     }
-    
+
     // 硬币集齐事件处理函数
     private void OnCoinCollected()
     {
@@ -21,14 +21,23 @@ public class Cup : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     public void OnGrabObject()
     {
-        if(isCanBeGrab)
+        if (isCanBeGrab)
         {
             DisableKinematic();
+
+        }
+    }
+
+    public void OnReleaseObject()
+    {
+        if (isCanBeGrab)
+        {
+            StartCoroutine(WakingMan());
         }
     }
 
@@ -50,7 +59,14 @@ public class Cup : MonoBehaviour
             Debug.LogError("No Rigidbody found on Cup");
         }
     }
-    
+
+    // 协程：5秒后输出hwhw日志并激活叫醒男人事件
+    private IEnumerator WakingMan()
+    {
+        yield return new WaitForSeconds(3f);
+        MyEvent.WakeUpManEvent.Invoke();
+    }
+
     // 在对象销毁时移除事件监听器
     private void OnDestroy()
     {
