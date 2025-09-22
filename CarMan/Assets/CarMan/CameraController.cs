@@ -46,7 +46,14 @@ public class CameraController : MonoBehaviour
             mainCamera.backgroundColor = Color.black;
         }
         
-        // 触发文字渐变事件
+        // 启动协程，等待2秒后触发文字渐变事件
+        StartCoroutine(DelayedTextFadeIn());
+    }
+
+    // 协程：延迟2秒后触发文字渐变事件
+    private IEnumerator DelayedTextFadeIn()
+    {
+        yield return new WaitForSeconds(2f);
         MyEvent.TextFadeInEvent.Invoke();
     }
 }
