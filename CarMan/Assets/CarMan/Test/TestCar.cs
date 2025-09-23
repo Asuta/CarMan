@@ -20,6 +20,8 @@ public class TestCar : MonoBehaviour
     private float startTime;
     private Vector3 startPosition;
     private Vector3 targetPosition;
+    private Quaternion startRotation;
+    private Quaternion targetRotation;
     private int currentPairIndex = 0;
     // Start is called before the first frame update
     void Start()
@@ -62,11 +64,14 @@ public class TestCar : MonoBehaviour
                 isMoving = true;
                 startPosition = pair.pointA.position;
                 targetPosition = pair.pointB.position;
+                startRotation = pair.pointA.rotation;
+                targetRotation = pair.pointB.rotation;
                 journeyLength = Vector3.Distance(startPosition, targetPosition);
                 startTime = Time.time;
                 
-                // 设置初始位置
+                // 设置初始位置和旋转
                 thisT.position = startPosition;
+                thisT.rotation = startRotation;
             }
         }
     }
@@ -77,14 +82,18 @@ public class TestCar : MonoBehaviour
         float distCovered = (Time.time - startTime) * moveSpeed;
         float fractionOfJourney = distCovered / journeyLength;
         
-        // 使用 Lerp 平滑移动
+        // 使用 Lerp 平滑移动位置
         thisT.position = Vector3.Lerp(startPosition, targetPosition, fractionOfJourney);
+        
+        // 使用 Slerp 平滑旋转（与位置同步）
+        thisT.rotation = Quaternion.Slerp(startRotation, targetRotation, fractionOfJourney);
         
         // 检查是否到达目标
         if (fractionOfJourney >= 1.0f)
         {
             isMoving = false;
             thisT.position = targetPosition; // 确保精确到达目标位置
+            thisT.rotation = targetRotation; // 确保精确到达目标旋转
         }
     }
 }
