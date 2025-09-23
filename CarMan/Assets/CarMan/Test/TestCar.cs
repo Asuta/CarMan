@@ -2,10 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TestCar : MonoBehaviour
+[System.Serializable]
+public class PointPair
 {
     public Transform pointA;
     public Transform pointB;
+}
+
+public class TestCar : MonoBehaviour
+{
+    public List<PointPair> pointPairs = new List<PointPair>();
     public float moveSpeed = 2.0f;
     public Transform thisT;
     
@@ -14,6 +20,7 @@ public class TestCar : MonoBehaviour
     private float startTime;
     private Vector3 startPosition;
     private Vector3 targetPosition;
+    private int currentPairIndex = 0;
     // Start is called before the first frame update
     void Start()
     {
@@ -28,10 +35,13 @@ public class TestCar : MonoBehaviour
     void Update()
     {
         // 检测空格键按下
-        if (Input.GetKeyDown(KeyCode.Space) && !isMoving)
+        if (Input.GetKeyDown(KeyCode.Space) && !isMoving && pointPairs.Count > 0)
         {
-            // 调用移动方法，从 pointA 移动到 pointB
-            StartMoveToPoint(pointA, pointB);
+            // 调用移动方法，使用当前索引的点对
+            StartMoveToPoint(currentPairIndex);
+            
+            // 移动到下一个点对（循环）
+            currentPairIndex = (currentPairIndex + 1) % pointPairs.Count;
         }
         
         // 如果正在移动，更新位置
@@ -41,19 +51,23 @@ public class TestCar : MonoBehaviour
         }
     }
 
-    // 开始移动：从 startPoint 移动到 endPoint
-    void StartMoveToPoint(Transform startPoint, Transform endPoint)
+    // 开始移动：使用指定索引的点对
+    void StartMoveToPoint(int pairIndex)
     {
-        if (startPoint != null && endPoint != null && thisT != null)
+        if (pairIndex >= 0 && pairIndex < pointPairs.Count)
         {
-            isMoving = true;
-            startPosition = startPoint.position;
-            targetPosition = endPoint.position;
-            journeyLength = Vector3.Distance(startPosition, targetPosition);
-            startTime = Time.time;
-            
-            // 设置初始位置
-            thisT.position = startPosition;
+            PointPair pair = pointPairs[pairIndex];
+            if (pair.pointA != null && pair.pointB != null && thisT != null)
+            {
+                isMoving = true;
+                startPosition = pair.pointA.position;
+                targetPosition = pair.pointB.position;
+                journeyLength = Vector3.Distance(startPosition, targetPosition);
+                startTime = Time.time;
+                
+                // 设置初始位置
+                thisT.position = startPosition;
+            }
         }
     }
     

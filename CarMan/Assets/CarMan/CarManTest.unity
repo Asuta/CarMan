@@ -240,8 +240,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee0e6118e9a6fea48bbda6fa64608e5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pointA: {fileID: 1319855261}
-  pointB: {fileID: 1910638305}
+  pointPairs:
+  - pointA: {fileID: 1319855261}
+    pointB: {fileID: 1910638305}
+  - pointA: {fileID: 1910638305}
+    pointB: {fileID: 829598561}
   moveSpeed: 2
   thisT: {fileID: 0}
 --- !u!1 &391052788
