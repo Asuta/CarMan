@@ -14,6 +14,7 @@ public class TestCar : MonoBehaviour
     public List<PointPair> pointPairs = new List<PointPair>();
     public float moveSpeed = 2.0f;
     public Transform thisT;
+    public bool isAutoMoveNext = false;
     
     private bool isMoving = false;
     private float journeyLength;
@@ -94,6 +95,24 @@ public class TestCar : MonoBehaviour
             isMoving = false;
             thisT.position = targetPosition; // 确保精确到达目标位置
             thisT.rotation = targetRotation; // 确保精确到达目标旋转
+            
+            // 如果启用自动移动，移动到下一个点对
+            if (isAutoMoveNext && pointPairs.Count > 0)
+            {
+                // 短暂延迟后开始下一个移动
+                StartCoroutine(AutoMoveToNextPair());
+            }
         }
+    }
+    
+    // 自动移动到下一个点对
+    IEnumerator AutoMoveToNextPair()
+    {
+        // 短暂延迟，让用户看到移动完成
+        yield return new WaitForSeconds(0f);
+        
+        // 移动到下一个点对
+        StartMoveToPoint(currentPairIndex);
+        currentPairIndex = (currentPairIndex + 1) % pointPairs.Count;
     }
 }
