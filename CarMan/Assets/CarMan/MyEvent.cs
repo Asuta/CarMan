@@ -4,17 +4,18 @@ using UnityEngine;
 using UnityEngine.Events;
 public static class MyEvent
 {
-    public static UnityEvent LoadEvent = new UnityEvent();
-    public static UnityEvent SystemStartEvent = new UnityEvent();
-    public static UnityEvent WindshieldEvent = new UnityEvent();
-    public static UnityEvent HonkingEvent = new UnityEvent();
-    public static UnityEvent EatMedicineEvent = new UnityEvent();
-    public static UnityEvent AddCoinEvent = new UnityEvent();
+    public static UnityEvent LoadEvent = new UnityEvent(); // 加载事件
+    public static UnityEvent SystemStartEvent = new UnityEvent(); // 系统启动事件
+    public static UnityEvent WindshieldEvent = new UnityEvent(); // 挡风玻璃事件
+    public static UnityEvent HonkingEvent = new UnityEvent(); // 鸣笛事件
+    public static UnityEvent EatMedicineEvent = new UnityEvent(); // 吃药事件
+    public static UnityEvent AddCoinEvent = new UnityEvent(); // 添加硬币事件
     public static UnityEvent CoinCollectedEvent = new UnityEvent(); // 硬币集齐事件
     public static UnityEvent WakeUpManEvent = new UnityEvent(); // 叫醒男人事件
     public static UnityEvent EyeBlackFadeInEvent = new UnityEvent(); // 黑眼睛渐变显示事件
     public static UnityEvent CameraBlackModeEvent = new UnityEvent(); // 相机黑屏模式事件
     public static UnityEvent TextFadeInEvent = new UnityEvent(); // 文字渐变显示事件
+    public static UnityEvent ArriveAtPointAEvent = new UnityEvent(); // 到达point A位置事件
 }
 
 

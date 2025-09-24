@@ -4,6 +4,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.XR.Interaction.Toolkit.Samples.StarterAssets;
+using VInspector;
 
 public class Coin : MonoBehaviour
 {
@@ -31,6 +32,7 @@ public class Coin : MonoBehaviour
         isHolding = true;
     }
 
+    [Button("OnReleaseObject")]
     public void OnReleaseObject()
     {
         MyEvent.AddCoinEvent.Invoke();

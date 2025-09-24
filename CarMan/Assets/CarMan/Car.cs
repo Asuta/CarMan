@@ -60,6 +60,8 @@ public class Car : MonoBehaviour
             // 确保最终位置准确
             transform.position = targetPosition;
             Debug.Log("车辆已到达point A位置！");
+            // 触发到达point A位置事件
+            MyEvent.ArriveAtPointAEvent.Invoke();
         }
         else
         {

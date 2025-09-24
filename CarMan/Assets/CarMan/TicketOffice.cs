@@ -28,34 +28,30 @@ public class TicketOffice : MonoBehaviour
             Debug.LogError("Coin collected event triggered!");
         }
         
-        // 当票数达到5、男人醒着且尚未触发过打开时，触发RodAxis的Open方法
-        if (ticketCount >= 5 && isManAwake && !hasOpened && rodAxis != null)
+        // 当票数达到5且尚未触发过打开时，触发RodAxis的Open方法（不再检查男人是否醒着）
+        if (ticketCount >= 5 && !hasOpened && rodAxis != null)
         {
             rodAxis.Open();
             hasOpened = true;
-            Debug.LogError("Ticket count reached 5 and man is awake! Opening rod axis.");
+            Debug.LogError("Ticket count reached 5! Opening rod axis.");
             
             // 启动协程，等待3秒后触发眼睛渐变事件
             StartCoroutine(TriggerEyeBlackFadeInAfterDelay());
-        }
-        else if (ticketCount >= 5 && !isManAwake && !hasOpened)
-        {
-            Debug.LogError("Ticket count reached 5, but man is not awake yet. Waiting...");
         }
     }
 
     // Update is called once per frame
     void Update()
     {
-        // 持续检查条件，以防男人在硬币集齐后才醒来
-        if (ticketCount >= 5 && isManAwake && !hasOpened && rodAxis != null)
+        // 持续检查条件（不再检查男人是否醒着）
+        if (ticketCount >= 5 && !hasOpened && rodAxis != null)
         {
             rodAxis.Open();
             hasOpened = true;
             Debug.LogError("Conditions met! Opening rod axis.");
             
             // 启动协程，等待3秒后触发眼睛渐变事件
-            StartCoroutine(TriggerEyeBlackFadeInAfterDelay());
+            // StartCoroutine(TriggerEyeBlackFadeInAfterDelay());
         }
     }
 
