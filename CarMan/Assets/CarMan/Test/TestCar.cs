@@ -97,10 +97,9 @@ public class TestCar : MonoBehaviour
             thisT.rotation = targetRotation; // 确保精确到达目标旋转
             
             // 判断是否可以继续移动，如果可以则移动到下一个点对
-            if (pointPairs.Count > 0 && CanContinueMoving())
+            if (pointPairs.Count > 0)
             {
-                // 短暂延迟后开始下一个移动
-                StartCoroutine(AutoMoveToNextPair());
+                CanContinueMoving(pointPairs[currentPairIndex].pointB);
             }
         }
     }
@@ -117,11 +116,13 @@ public class TestCar : MonoBehaviour
     }
     
     // 判断是否可以继续移动到下一个点对
-    bool CanContinueMoving()
+    void CanContinueMoving(Transform currentPoint)
     {
-        // 这里可以添加各种判断条件
-        // 例如：检查是否有足够的能量、是否到达终点、是否有障碍物等
-        // 默认返回 true 表示可以继续移动
-        return true;
+        // 判断当前点的名称，如果是 point a 则继续移动
+        if (currentPoint != null && currentPoint.name == "point a")
+        {
+            // 短暂延迟后开始下一个移动
+            StartCoroutine(AutoMoveToNextPair());
+        }
     }
 }
