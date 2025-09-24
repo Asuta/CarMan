@@ -35,24 +35,19 @@ public class TicketOffice : MonoBehaviour
             hasOpened = true;
             Debug.LogError("Ticket count reached 5! Opening rod axis.");
             
-            // 启动协程，等待3秒后触发眼睛渐变事件
-            StartCoroutine(TriggerEyeBlackFadeInAfterDelay());
+            // // 启动协程，等待3秒后触发眼睛渐变事件
+            // StartCoroutine(TriggerEyeBlackFadeInAfterDelay());
+            
+            // 启动协程，等待5秒后触发栏杆完全打开事件
+            StartCoroutine(TriggerRodAxisFullyOpenedAfterDelay());
         }
     }
 
     // Update is called once per frame
     void Update()
     {
-        // 持续检查条件（不再检查男人是否醒着）
-        if (ticketCount >= 5 && !hasOpened && rodAxis != null)
-        {
-            rodAxis.Open();
-            hasOpened = true;
-            Debug.LogError("Conditions met! Opening rod axis.");
-            
-            // 启动协程，等待3秒后触发眼睛渐变事件
-            // StartCoroutine(TriggerEyeBlackFadeInAfterDelay());
-        }
+        // Update方法中不再需要检查条件，因为触发逻辑已经在AddTicket中处理
+        // 这样可以避免重复触发协程的问题
     }
 
     /// <summary>
@@ -88,5 +83,15 @@ public class TicketOffice : MonoBehaviour
         yield return new WaitForSeconds(3f);
         MyEvent.EyeBlackFadeInEvent.Invoke();
         Debug.LogError("Eye black fade in event triggered after 3 seconds!");
+    }
+    
+    /// <summary>
+    /// 等待5秒后触发栏杆完全打开事件
+    /// </summary>
+    private IEnumerator TriggerRodAxisFullyOpenedAfterDelay()
+    {
+        yield return new WaitForSeconds(5f);
+        MyEvent.RodAxisFullyOpenedEvent.Invoke();
+        Debug.LogError("Rod axis fully opened event triggered after 5 seconds!");
     }
 }
