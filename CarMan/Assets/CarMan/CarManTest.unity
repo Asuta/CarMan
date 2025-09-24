@@ -247,7 +247,7 @@ MonoBehaviour:
     pointB: {fileID: 829598561}
   moveSpeed: 2
   thisT: {fileID: 0}
-  isAutoMoveNext: 1
+  isAutoMoveNext: 0
 --- !u!1 &391052788
 GameObject:
   m_ObjectHideFlags: 0

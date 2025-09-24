@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using VInspector;
 
 [System.Serializable]
 public class PointPair
@@ -14,8 +15,6 @@ public class TestCar : MonoBehaviour
     public List<PointPair> pointPairs = new List<PointPair>();
     public float moveSpeed = 2.0f;
     public Transform thisT;
-    public bool isAutoMoveNext = false;
-    
     private bool isMoving = false;
     private float journeyLength;
     private float startTime;
@@ -41,7 +40,7 @@ public class TestCar : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space) && !isMoving && pointPairs.Count > 0)
         {
             // 调用移动方法，使用当前索引的点对
-            StartMoveToPoint(currentPairIndex);
+            StartMoveToPoint();
             
             // 移动到下一个点对（循环）
             currentPairIndex = (currentPairIndex + 1) % pointPairs.Count;
@@ -54,12 +53,13 @@ public class TestCar : MonoBehaviour
         }
     }
 
-    // 开始移动：使用指定索引的点对
-    void StartMoveToPoint(int pairIndex)
+    // 开始移动：使用当前索引的点对
+    [Button("StartMoveToPoint")]
+    void StartMoveToPoint()
     {
-        if (pairIndex >= 0 && pairIndex < pointPairs.Count)
+        if (currentPairIndex >= 0 && currentPairIndex < pointPairs.Count)
         {
-            PointPair pair = pointPairs[pairIndex];
+            PointPair pair = pointPairs[currentPairIndex];
             if (pair.pointA != null && pair.pointB != null && thisT != null)
             {
                 isMoving = true;
@@ -96,8 +96,8 @@ public class TestCar : MonoBehaviour
             thisT.position = targetPosition; // 确保精确到达目标位置
             thisT.rotation = targetRotation; // 确保精确到达目标旋转
             
-            // 如果启用自动移动，移动到下一个点对
-            if (isAutoMoveNext && pointPairs.Count > 0)
+            // 判断是否可以继续移动，如果可以则移动到下一个点对
+            if (pointPairs.Count > 0 && CanContinueMoving())
             {
                 // 短暂延迟后开始下一个移动
                 StartCoroutine(AutoMoveToNextPair());
@@ -112,7 +112,16 @@ public class TestCar : MonoBehaviour
         yield return new WaitForSeconds(0f);
         
         // 移动到下一个点对
-        StartMoveToPoint(currentPairIndex);
+        StartMoveToPoint();
         currentPairIndex = (currentPairIndex + 1) % pointPairs.Count;
+    }
+    
+    // 判断是否可以继续移动到下一个点对
+    bool CanContinueMoving()
+    {
+        // 这里可以添加各种判断条件
+        // 例如：检查是否有足够的能量、是否到达终点、是否有障碍物等
+        // 默认返回 true 表示可以继续移动
+        return true;
     }
 }
