@@ -4,8 +4,7 @@ using UnityEngine;
 using VInspector;
 
 
-
-public class TestCar : MonoBehaviour
+public class CarStageOne : MonoBehaviour
 {
     public List<PointPair> pointPairs = new List<PointPair>();
     public float moveSpeed = 2.0f;

@@ -2,6 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+
+[System.Serializable]
+public class PointPair
+{
+    public Transform pointA;
+    public Transform pointB;
+}
 public static class MyEvent
 {
     public static UnityEvent LoadEvent = new UnityEvent(); // 加载事件
