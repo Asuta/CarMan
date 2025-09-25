@@ -34,6 +34,7 @@ public static class MyEvent
     //stage Two
     public static UnityEvent TextFadeInEventTwo = new UnityEvent(); // 文字渐变显示事件
     public static UnityEvent TextFadeOutEventTwo = new UnityEvent(); // 文字渐变隐藏事件
+    public static UnityEvent SystemStartEventTwo = new UnityEvent(); // 系统启动事件
 }
 
 

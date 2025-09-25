@@ -2,13 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ButtonToLight : MonoBehaviour
+public class InvokeMoveEventStageTwo : MonoBehaviour
 {
-    private SpriteRenderer spriteRenderer;
     // Start is called before the first frame update
     void Start()
     {
-        spriteRenderer = GetComponent<SpriteRenderer>();
+        
     }
 
     // Update is called once per frame
@@ -17,8 +16,8 @@ public class ButtonToLight : MonoBehaviour
         
     }
 
-    public void OnButtonToLight()
+    public void InvokeMoveEventFunc()
     {
-        spriteRenderer.color = Color.red;
+        MyEvent.SystemStartEventTwo.Invoke();
     }
 }
