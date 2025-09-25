@@ -11,6 +11,7 @@ public class PointPair
 }
 public static class MyEvent
 {
+    //stage One
     public static UnityEvent LoadEvent = new UnityEvent(); // 加载事件
     public static UnityEvent SystemStartEvent = new UnityEvent(); // 系统启动事件
     public static UnityEvent WindshieldEvent = new UnityEvent(); // 挡风玻璃事件
@@ -28,7 +29,9 @@ public static class MyEvent
     public static UnityEvent StopRodAxisFullyOpenedEvent = new UnityEvent(); // 停车厂栏杆完全打开事件
     public static UnityEvent CupBreakEvent = new UnityEvent(); // 杯子碎了事件
     public static UnityEvent MoveContinueEvent = new UnityEvent(); // 继续移动事件
-        public static UnityEvent MoveToEndPointEvent = new UnityEvent(); // 移动到终点事件
+    public static UnityEvent MoveToEndPointEvent = new UnityEvent(); // 移动到终点事件
+
+    //stage Two
 }
 
 
