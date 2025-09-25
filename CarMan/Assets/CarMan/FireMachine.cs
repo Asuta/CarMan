@@ -11,6 +11,7 @@ public class FireMachine : MonoBehaviour
     public bool isHolding;
     public GameObject coffeelidOne;
     public GameObject coffeelidTwo;
+    public GameObject fireCenter;
     private bool isFirstLidOpen = true;
     public bool isOpen = false;
     public bool isHot = true;
@@ -22,9 +23,10 @@ public class FireMachine : MonoBehaviour
     public AudioSource beHotHurtSound;
     public AudioClip beHotHurtSoundClip;
     public AudioClip beEmptyHurtSoundClip;
-    
+
 
     public bool isEmpty;
+
 
 
     // Start is called before the first frame update
@@ -80,6 +82,7 @@ public class FireMachine : MonoBehaviour
                 // 关闭第一个盖子，打开第二个盖子
                 coffeelidOne.SetActive(false);
                 coffeelidTwo.SetActive(true);
+                fireCenter.SetActive(true);
                 isOpen = true;
 
                 // 开始冷却计时
@@ -90,6 +93,7 @@ public class FireMachine : MonoBehaviour
                 // 打开第一个盖子，关闭第二个盖子
                 coffeelidOne.SetActive(true);
                 coffeelidTwo.SetActive(false);
+                fireCenter.SetActive(false);
                 isOpen = false;
 
                 // 停止冷却计时
