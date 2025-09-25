@@ -9,6 +9,7 @@ public class OtherCar : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        otherCarModel.SetActive(false);
         // 监听到达point A位置事件
         MyEvent.ArriveAtPointAEvent.AddListener(OnArriveAtPointA);
     }
