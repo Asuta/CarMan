@@ -17,6 +17,7 @@ public class CarStageOne : MonoBehaviour
     private Quaternion startRotation;
     private Quaternion targetRotation;
     private int currentPairIndex = 0;
+    public Transform endPoint;
     // Start is called before the first frame update
     void Start()
     {
@@ -165,11 +166,14 @@ public class CarStageOne : MonoBehaviour
     void CanContinueMoving(Transform currentPoint)
     {
         // 判断当前点的名称，如果是 point a 则继续移动
-        if (currentPoint != null && currentPoint.name == "point a")
+        if (currentPoint == endPoint)
         {
-            // 短暂延迟后开始下一个移动
+            return;
+            
+        }
+        else
+        {
             StartCoroutine(AutoMoveToNextPair());
         }
-        // 如果不是point a，则停止移动
     }
 }
