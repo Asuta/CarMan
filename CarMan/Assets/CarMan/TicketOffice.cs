@@ -7,14 +7,12 @@ public class TicketOffice : MonoBehaviour
 {
     public int ticketCount = 0;
     public RodAxis rodAxis;
-    public bool isManAwake = false; // 男人是否醒着
     private bool hasOpened = false; // 标记是否已经触发过打开
 
     // Start is called before the first frame update
     void Start()
     {
         MyEvent.AddCoinEvent.AddListener(AddTicket);
-        MyEvent.CupBreakEvent.AddListener(OnManWokeUp);
     }
 
     private void AddTicket()
@@ -51,29 +49,10 @@ public class TicketOffice : MonoBehaviour
         // 这样可以避免重复触发协程的问题
     }
 
-    /// <summary>
-    /// 处理男人醒来事件
-    /// </summary>
-    private void OnManWokeUp()
-    {
-        SetManAwake(true);
-        Debug.LogError("Man woke up from event!");
-    }
-    
-    /// <summary>
-    /// 设置男人醒着的状态
-    /// </summary>
-    /// <param name="awake">是否醒着</param>
-    public void SetManAwake(bool awake)
-    {
-        isManAwake = awake;
-        Debug.LogError("Man awake state: " + isManAwake);
-    }
     // 在对象销毁时移除事件监听器
     private void OnDestroy()
     {
         MyEvent.AddCoinEvent.RemoveListener(AddTicket);
-        MyEvent.CupBreakEvent.RemoveListener(OnManWokeUp);
     }
     
     /// <summary>

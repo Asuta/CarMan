@@ -191,6 +191,7 @@ public class CarStageOne : MonoBehaviour
         else if (currentPoint == EndPoint)
         {
             MyEvent.MoveToEndPointEvent.Invoke();
+            MyEvent.CameraBlackModeEvent.Invoke();
             return;
         }
         else
