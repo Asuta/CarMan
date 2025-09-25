@@ -21586,8 +21586,9 @@ GameObject:
   - component: {fileID: 283282839}
   - component: {fileID: 283282838}
   - component: {fileID: 283282843}
+  - component: {fileID: 283282844}
   m_Layer: 0
-  m_Name: Coffee
+  m_Name: FireMachine
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -21880,8 +21881,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 283282843}
-        m_TargetAssemblyTypeName: Coffee, Assembly-CSharp
+      - m_Target: {fileID: 283282844}
+        m_TargetAssemblyTypeName: FireMachine, Assembly-CSharp
         m_MethodName: OnGrabObject
         m_Mode: 1
         m_Arguments:
@@ -21907,8 +21908,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 283282843}
-        m_TargetAssemblyTypeName: Coffee, Assembly-CSharp
+      - m_Target: {fileID: 283282844}
+        m_TargetAssemblyTypeName: FireMachine, Assembly-CSharp
         m_MethodName: OnReleaseObject
         m_Mode: 1
         m_Arguments:
@@ -21969,7 +21970,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 283282836}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3b6b1ed6f9a06b94ca7d454f278a072a, type: 3}
   m_Name: 
@@ -21994,6 +21995,57 @@ MonoBehaviour:
       m_Type: 0
       m_ExpectedControlType: 
       m_Id: 413799de-f7a2-40d8-aef5-72b739eedf0b
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_Reference: {fileID: 2123278835456677422, guid: ea9500ae32862c949b420c59682d02ed,
+      type: 3}
+  isHolding: 0
+  coffeelidOne: {fileID: 1742620601}
+  coffeelidTwo: {fileID: 128112306}
+  isOpen: 0
+  isHot: 1
+  cloudPoint: {fileID: 444131936}
+  cloudPrefab: {fileID: 8907795592353521825, guid: 38bc016bdc3bd9b49896e60ce6154be7,
+    type: 3}
+  beHotHurtSound: {fileID: 1236464216}
+  beHotHurtSoundClip: {fileID: 8300000, guid: 80ca20a4e80ed75449a64946c7e7d588, type: 3}
+  beEmptyHurtSoundClip: {fileID: 8300000, guid: c84ac7dddc3097b46be2ed3fc7016c7a,
+    type: 3}
+  isEmpty: 0
+--- !u!114 &283282844
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 283282836}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0feaefdae44a4247b74a01fdeae5ab5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LeftSecondButton:
+    m_UseReference: 1
+    m_Action:
+      m_Name: Left Second Button
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: 3711d6f2-9828-418e-981b-1f38df39f9f0
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_Reference: {fileID: -6608828962120449096, guid: ea9500ae32862c949b420c59682d02ed,
+      type: 3}
+  RightSecondButton:
+    m_UseReference: 1
+    m_Action:
+      m_Name: Right Second Button
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: 1ec3b3e4-21de-4838-bb4f-1f85e230ea94
       m_Processors: 
       m_Interactions: 
       m_SingletonActionBindings: []
