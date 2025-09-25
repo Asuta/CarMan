@@ -32,6 +32,8 @@ public static class MyEvent
     public static UnityEvent MoveToEndPointEvent = new UnityEvent(); // 移动到终点事件
 
     //stage Two
+    public static UnityEvent TextFadeInEventTwo = new UnityEvent(); // 文字渐变显示事件
+    public static UnityEvent TextFadeOutEventTwo = new UnityEvent(); // 文字渐变隐藏事件
 }
 
 

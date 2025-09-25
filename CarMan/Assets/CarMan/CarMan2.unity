@@ -27967,7 +27967,7 @@ GameObject:
   - component: {fileID: 983390239}
   - component: {fileID: 983390242}
   - component: {fileID: 983390241}
-  - component: {fileID: 983390243}
+  - component: {fileID: 983390244}
   m_Layer: 13
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -28128,7 +28128,7 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &983390243
+--- !u!114 &983390244
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -28137,7 +28137,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 983390238}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9f7dc907bc5096042984bcfc3222690d, type: 3}
+  m_Script: {fileID: 11500000, guid: bc37273aea326d849acac781db26648a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   textMeshPro: {fileID: 983390241}
@@ -28449,9 +28449,22 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1020676701}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0491ffdc4b1a62a4994caa57813d6f67, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mainCamera: {fileID: 1020676711}
+--- !u!114 &1020676716
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1020676701}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ea60dd59de426b44a927ba0dd345907, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   mainCamera: {fileID: 1020676711}
@@ -47382,6 +47395,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 1020676712}
+    - targetCorrespondingSourceObject: {fileID: 7668830300499184784, guid: f13bbbc9578242a44953eec81cfb27d4,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1020676716}
   m_SourcePrefab: {fileID: 100100000, guid: f13bbbc9578242a44953eec81cfb27d4, type: 3}
 --- !u!4 &1049661771 stripped
 Transform:
@@ -48956,7 +48973,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ticketCount: 0
   rodAxis: {fileID: 2123810899}
-  isManAwake: 0
 --- !u!1 &1317293966
 GameObject:
   m_ObjectHideFlags: 0
