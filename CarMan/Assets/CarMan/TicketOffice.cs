@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using VInspector;
 
 public class TicketOffice : MonoBehaviour
 {
@@ -93,5 +94,12 @@ public class TicketOffice : MonoBehaviour
         yield return new WaitForSeconds(5f);
         MyEvent.RodAxisFullyOpenedEvent.Invoke();
         Debug.LogError("Rod axis fully opened event triggered after 5 seconds!");
+    }
+
+    [Button("TriggerRodAxisFullyOpened")]
+    public void TriggerRodAxisFullyOpened()
+    {
+        MyEvent.RodAxisFullyOpenedEvent.Invoke();
+        Debug.LogError("Rod axis fully opened event triggered!");
     }
 }

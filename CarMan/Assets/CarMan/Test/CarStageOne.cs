@@ -25,6 +25,9 @@ public class CarStageOne : MonoBehaviour
         {
             thisT = transform;
         }
+        
+        // 监听栏杆完全打开事件
+        MyEvent.RodAxisFullyOpenedEvent.AddListener(OnRodAxisFullyOpened);
     }
 
     // Update is called once per frame
@@ -69,8 +72,6 @@ public class CarStageOne : MonoBehaviour
                 thisT.rotation = startRotation;
             }
         }
-
-        currentPairIndex = (currentPairIndex + 1) % pointPairs.Count;
 
     }
 
@@ -121,9 +122,32 @@ public class CarStageOne : MonoBehaviour
             // 判断是否可以继续移动，如果可以则移动到下一个点对
             if (pointPairs.Count > 0)
             {
-                CanContinueMoving(pointPairs[currentPairIndex].pointB);
+                // 使用正确的索引来检查当前到达的点
+                int completedPairIndex = (currentPairIndex - 1 + pointPairs.Count) % pointPairs.Count;
+                CanContinueMoving(pointPairs[completedPairIndex].pointB);
             }
         }
+        
+    }
+    
+    // 栏杆完全打开事件处理方法
+    private void OnRodAxisFullyOpened()
+    {
+        Debug.Log("栏杆完全打开事件触发，汽车开始移动");
+        if (!isMoving && pointPairs.Count > 0)
+        {
+            // 调用移动方法，使用当前索引的点对
+            StartMoveToPoint();
+            
+            // 移动到下一个点对（循环）
+            currentPairIndex = (currentPairIndex + 1) % pointPairs.Count;
+        }
+    }
+    
+    // 在对象销毁时移除事件监听，避免内存泄漏
+    private void OnDestroy()
+    {
+        MyEvent.RodAxisFullyOpenedEvent.RemoveListener(OnRodAxisFullyOpened);
     }
 
     // 自动移动到下一个点对
@@ -146,5 +170,6 @@ public class CarStageOne : MonoBehaviour
             // 短暂延迟后开始下一个移动
             StartCoroutine(AutoMoveToNextPair());
         }
+        // 如果不是point a，则停止移动
     }
 }
