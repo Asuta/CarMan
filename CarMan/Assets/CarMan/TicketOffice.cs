@@ -14,7 +14,7 @@ public class TicketOffice : MonoBehaviour
     void Start()
     {
         MyEvent.AddCoinEvent.AddListener(AddTicket);
-        MyEvent.WakeUpManEvent.AddListener(OnManWokeUp);
+        MyEvent.CupBreakEvent.AddListener(OnManWokeUp);
     }
 
     private void AddTicket()
@@ -73,7 +73,7 @@ public class TicketOffice : MonoBehaviour
     private void OnDestroy()
     {
         MyEvent.AddCoinEvent.RemoveListener(AddTicket);
-        MyEvent.WakeUpManEvent.RemoveListener(OnManWokeUp);
+        MyEvent.CupBreakEvent.RemoveListener(OnManWokeUp);
     }
     
     /// <summary>

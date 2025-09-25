@@ -17,7 +17,8 @@ public class CarStageOne : MonoBehaviour
     private Quaternion startRotation;
     private Quaternion targetRotation;
     private int currentPairIndex = 0;
-    public Transform endPoint;
+    public Transform SuspendPoint;
+    public Transform EndPoint;
     // Start is called before the first frame update
     void Start()
     {
@@ -29,6 +30,7 @@ public class CarStageOne : MonoBehaviour
         
         // 监听栏杆完全打开事件
         MyEvent.RodAxisFullyOpenedEvent.AddListener(OnRodAxisFullyOpened);
+        MyEvent.MoveContinueEvent.AddListener(OnMoveContinue);
     }
 
     // Update is called once per frame
@@ -144,11 +146,26 @@ public class CarStageOne : MonoBehaviour
             currentPairIndex = (currentPairIndex + 1) % pointPairs.Count;
         }
     }
+
+    // 继续移动事件处理方法
+    private void OnMoveContinue()
+    {
+                Debug.Log("栏杆完全打开事件触发，汽车开始移动");
+        if (!isMoving && pointPairs.Count > 0)
+        {
+            // 调用移动方法，使用当前索引的点对
+            StartMoveToPoint();
+            
+            // 移动到下一个点对（循环）
+            currentPairIndex = (currentPairIndex + 1) % pointPairs.Count;
+        }
+    }
     
     // 在对象销毁时移除事件监听，避免内存泄漏
     private void OnDestroy()
     {
         MyEvent.RodAxisFullyOpenedEvent.RemoveListener(OnRodAxisFullyOpened);
+        MyEvent.MoveContinueEvent.RemoveListener(OnMoveContinue);
     }
 
     // 自动移动到下一个点对
@@ -166,10 +183,15 @@ public class CarStageOne : MonoBehaviour
     void CanContinueMoving(Transform currentPoint)
     {
         // 判断当前点的名称，如果是 point a 则继续移动
-        if (currentPoint == endPoint)
+        if (currentPoint == SuspendPoint)
         {
+            MyEvent.MoveToSuspendPointEvent.Invoke();
             return;
-            
+        }
+        else if (currentPoint == EndPoint)
+        {
+            MyEvent.MoveToEndPointEvent.Invoke();
+            return;
         }
         else
         {

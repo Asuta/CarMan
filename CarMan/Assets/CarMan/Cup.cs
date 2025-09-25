@@ -60,11 +60,11 @@ public class Cup : MonoBehaviour
         }
     }
 
-    // 协程：5秒后输出hwhw日志并激活叫醒男人事件
+    // 协程：5秒后输出hwhw日志并激活杯子碎了事件
     private IEnumerator WakingMan()
     {
         yield return new WaitForSeconds(3f);
-        MyEvent.WakeUpManEvent.Invoke();
+        MyEvent.CupBreakEvent.Invoke();
     }
 
     // 在对象销毁时移除事件监听器

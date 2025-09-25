@@ -18,12 +18,17 @@ public static class MyEvent
     public static UnityEvent EatMedicineEvent = new UnityEvent(); // 吃药事件
     public static UnityEvent AddCoinEvent = new UnityEvent(); // 添加硬币事件
     public static UnityEvent CoinCollectedEvent = new UnityEvent(); // 硬币集齐事件
-    public static UnityEvent WakeUpManEvent = new UnityEvent(); // 叫醒男人事件
+
     public static UnityEvent EyeBlackFadeInEvent = new UnityEvent(); // 黑眼睛渐变显示事件
     public static UnityEvent CameraBlackModeEvent = new UnityEvent(); // 相机黑屏模式事件
     public static UnityEvent TextFadeInEvent = new UnityEvent(); // 文字渐变显示事件
     public static UnityEvent ArriveAtPointAEvent = new UnityEvent(); // 到达point A位置事件
     public static UnityEvent RodAxisFullyOpenedEvent = new UnityEvent(); // 栏杆完全打开事件
+    public static UnityEvent MoveToSuspendPointEvent = new UnityEvent(); // 移动到终点事件
+    public static UnityEvent StopRodAxisFullyOpenedEvent = new UnityEvent(); // 停车厂栏杆完全打开事件
+    public static UnityEvent CupBreakEvent = new UnityEvent(); // 杯子碎了事件
+    public static UnityEvent MoveContinueEvent = new UnityEvent(); // 继续移动事件
+        public static UnityEvent MoveToEndPointEvent = new UnityEvent(); // 移动到终点事件
 }
 
 
