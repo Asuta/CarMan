@@ -40,6 +40,14 @@ public static class MyEvent
     public static UnityEvent MoveToSuspendPointEventStageTwoB = new UnityEvent(); // 移动到点B（收费站）事件
     public static UnityEvent MoveToSuspendPointEventStageTwoC = new UnityEvent(); // 移动到点C事件
     public static UnityEvent MoveToSuspendPointEventStageTwoEnd = new UnityEvent(); // 移动到点End事件 
+
+    //stage Three
+    public static UnityEvent SystemStartEventStageThree = new UnityEvent(); // 系统启动事件
+    public static UnityEvent MoveToSuspendPointEventStageThree = new UnityEvent(); // 移动到红绿灯事件
+    public static UnityEvent lightToGreenEvent = new UnityEvent(); // 红绿灯变绿事件
+    public static UnityEvent MoveToSuspendPointEventStageThreeB = new UnityEvent(); // 移动到点B（收费站）事件
+    public static UnityEvent MoveToSuspendPointEventStageThreeC = new UnityEvent(); // 移动到点C事件
+    public static UnityEvent MoveToSuspendPointEventStageThreeEnd = new UnityEvent(); // 移动到点End事件 
 }
 
 

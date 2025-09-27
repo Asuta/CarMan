@@ -70,23 +70,14 @@ MonoBehaviour:
       isAsset: 1
       _id: 1058116885
     - globalId:
-        globalObjectIdString: GlobalObjectId_V1-2-81babdc1dc2e5ef46991a92a90419f26-1938510-0
+        globalObjectIdString: GlobalObjectId_V1-2-5ab19d66f2349e44890375fb999ad653-1938510-0
       _typeString: UnityEngine.GameObject, UnityEngine.CoreModule, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
       _obj: {fileID: 0}
       isSceneGameObject: 1
       isFolder: 0
       isAsset: 0
-      _id: 1043193873
-    - globalId:
-        globalObjectIdString: GlobalObjectId_V1-2-81babdc1dc2e5ef46991a92a90419f26-1747716899-0
-      _typeString: UnityEngine.GameObject, UnityEngine.CoreModule, Version=0.0.0.0,
-        Culture=neutral, PublicKeyToken=null
-      _obj: {fileID: 0}
-      isSceneGameObject: 1
-      isFolder: 0
-      isAsset: 0
-      _id: 1028029858
+      _id: 1052690513
     name: Page 1
     _id: 1058737613
   - items: []
