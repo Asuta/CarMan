@@ -18,13 +18,13 @@ public class TicketOffice : MonoBehaviour
     private void AddTicket()
     {
         ticketCount++;
-        Debug.LogError("Ticket count: " + ticketCount);
+        Debug.LogError("票数: " + ticketCount);
         
         // 当票数达到5时触发硬币集齐事件
         if (ticketCount >= 5)
         {
             MyEvent.CoinCollectedEvent.Invoke();
-            Debug.LogError("Coin collected event triggered!");
+            Debug.LogError("硬币收集事件已触发!");
         }
         
         // 当票数达到5且尚未触发过打开时，触发RodAxis的Open方法（不再检查男人是否醒着）
@@ -32,7 +32,7 @@ public class TicketOffice : MonoBehaviour
         {
             rodAxis.Open();
             hasOpened = true;
-            Debug.LogError("Ticket count reached 5! Opening rod axis.");
+            Debug.LogError("票数达到5张! 正在打开栏杆轴。");
             
             // // 启动协程，等待3秒后触发眼睛渐变事件
             // StartCoroutine(TriggerEyeBlackFadeInAfterDelay());
@@ -62,7 +62,7 @@ public class TicketOffice : MonoBehaviour
     {
         yield return new WaitForSeconds(3f);
         MyEvent.EyeBlackFadeInEvent.Invoke();
-        Debug.LogError("Eye black fade in event triggered after 3 seconds!");
+        Debug.LogError("3秒后触发眼睛黑色淡入事件!");
     }
     
     /// <summary>
@@ -72,13 +72,13 @@ public class TicketOffice : MonoBehaviour
     {
         yield return new WaitForSeconds(5f);
         MyEvent.RodAxisFullyOpenedEvent.Invoke();
-        Debug.LogError("Rod axis fully opened event triggered after 5 seconds!");
+        Debug.LogError("5秒后触发栏杆轴完全打开事件!");
     }
 
     [Button("TriggerRodAxisFullyOpened")]
     public void TriggerRodAxisFullyOpened()
     {
         MyEvent.RodAxisFullyOpenedEvent.Invoke();
-        Debug.LogError("Rod axis fully opened event triggered!");
+        Debug.LogError("栏杆轴完全打开事件已触发!");
     }
 }
