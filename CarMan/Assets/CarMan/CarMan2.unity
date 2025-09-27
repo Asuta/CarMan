@@ -239,6 +239,8 @@ MonoBehaviour:
   - pointA: {fileID: 253568510}
     pointB: {fileID: 1095823774}
   - pointA: {fileID: 1095823774}
+    pointB: {fileID: 953987437}
+  - pointA: {fileID: 953987437}
     pointB: {fileID: 628994704}
   - pointA: {fileID: 628994704}
     pointB: {fileID: 1511478219}
