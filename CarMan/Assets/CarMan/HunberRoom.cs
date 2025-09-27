@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Autohand;
 using UnityEngine;
 using VInspector;
 
@@ -10,6 +11,9 @@ public class HunberRoom : MonoBehaviour
     public Transform pointA;
     public Transform pointB;
     public float moveSpeed = 2.0f;
+    public Grabbable grabbable;
+    public GrabObject grabObject;
+    
 
     // Start is called before the first frame update
     void Start()
@@ -78,5 +82,32 @@ public class HunberRoom : MonoBehaviour
         // 确保精确到达 B 点
         targetT.position = pointB.position;
         Debug.Log("移动完成，已到达 B 点");
+        
+        // 移动完成后启用 Grabbable 和 GrabObject 脚本
+        EnableGrabbingComponents();
+    }
+
+    // 启用抓取相关的组件
+    private void EnableGrabbingComponents()
+    {
+        if (grabbable != null)
+        {
+            grabbable.enabled = true;
+            Debug.Log("已启用 Grabbable 组件");
+        }
+        else
+        {
+            Debug.LogWarning("Grabbable 组件未设置!");
+        }
+        
+        if (grabObject != null)
+        {
+            grabObject.enabled = true;
+            Debug.Log("已启用 GrabObject 组件");
+        }
+        else
+        {
+            Debug.LogWarning("GrabObject 组件未设置!");
+        }
     }
 }

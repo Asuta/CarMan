@@ -52266,7 +52266,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1747716899}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 642c6dae96bd69b40a93fa2c9a47356e, type: 3}
   m_Name: 
@@ -52474,7 +52474,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1747716899}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 822bc9090447b9c40833509c4a32e597, type: 3}
   m_Name: 
@@ -53171,6 +53171,8 @@ MonoBehaviour:
   pointA: {fileID: 237755816}
   pointB: {fileID: 310522332}
   moveSpeed: 2
+  grabbable: {fileID: 1747716904}
+  grabObject: {fileID: 1747716901}
 --- !u!1 &1828177355
 GameObject:
   m_ObjectHideFlags: 0
