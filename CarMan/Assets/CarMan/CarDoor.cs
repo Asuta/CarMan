@@ -53,19 +53,34 @@ public class CarDoor : MonoBehaviour
     private IEnumerator RotateSmoothly(Vector3 fromAngle, Vector3 toAngle, float duration)
     {
         float elapsedTime = 0f;
-        Quaternion startRotation = Quaternion.Euler(fromAngle);
+        
+        // 设置初始本地旋转
+        rotateTarget.localRotation = Quaternion.Euler(fromAngle);
         Quaternion targetRotation = Quaternion.Euler(toAngle);
 
         while (elapsedTime < duration)
         {
             elapsedTime += Time.deltaTime;
             float t = Mathf.Clamp01(elapsedTime / duration);
-            rotateTarget.rotation = Quaternion.Slerp(startRotation, targetRotation, t);
+            
+            // 使用简单的 LerpAngle 来确保正确的旋转方向
+            Vector3 currentEuler = rotateTarget.localRotation.eulerAngles;
+            Vector3 targetEuler = toAngle;
+            
+            // 对每个轴分别进行插值
+            float x = Mathf.LerpAngle(currentEuler.x, targetEuler.x, t);
+            float y = Mathf.LerpAngle(currentEuler.y, targetEuler.y, t);
+            float z = Mathf.LerpAngle(currentEuler.z, targetEuler.z, t);
+            
+            rotateTarget.localRotation = Quaternion.Euler(x, y, z);
             yield return null;
         }
 
         // 确保最终精确到达目标角度
-        rotateTarget.rotation = targetRotation;
+        rotateTarget.localRotation = Quaternion.Euler(toAngle);
+        
+        // 调试输出最终角度
+        Debug.Log($"旋转完成，最终本地角度: {rotateTarget.localRotation.eulerAngles}");
     }
 
     // Update is called once per frame
