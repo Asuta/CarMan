@@ -47,6 +47,7 @@ public static class MyEvent
     public static UnityEvent lightToGreenEvent = new UnityEvent(); // 红绿灯变绿事件
     public static UnityEvent MoveMoveEventStageThree = new UnityEvent(); // 继续行进事件
     public static UnityEvent MoveToSuspendPointEventStageThreeB = new UnityEvent(); // 移动到点B（收费站）事件
+    public static UnityEvent SunVisorEventStageThree = new UnityEvent(); // 太阳镜事件
     public static UnityEvent MoveToSuspendPointEventStageThreeC = new UnityEvent(); // 移动到点C事件
     public static UnityEvent MoveToSuspendPointEventStageThreeEnd = new UnityEvent(); // 移动到点End事件 
 }
