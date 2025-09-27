@@ -58,6 +58,9 @@ public class EyeBlackStageTwo : MonoBehaviour
 
         // 启动协程：3秒后文字渐隐，文字渐隐完成后精灵渐隐
         StartCoroutine(TextAndSpriteSequence());
+
+        // 监听 MoveToSuspendPointEventStageTwoEnd 事件
+        MyEvent.MoveToSuspendPointEventStageTwoEnd.AddListener(OnMoveToSuspendPointEventStageTwoEnd);
     }
 
     // 延迟后渐隐协程：等待5秒后从1渐变到0
@@ -233,5 +236,28 @@ public class EyeBlackStageTwo : MonoBehaviour
         // {
         //     MyEvent.EyeBlackFadeInEvent.Invoke();
         // }
+    }
+
+    // 当对象被销毁时移除事件监听
+    void OnDestroy()
+    {
+        MyEvent.MoveToSuspendPointEventStageTwoEnd.RemoveListener(OnMoveToSuspendPointEventStageTwoEnd);
+    }
+
+    // MoveToSuspendPointEventStageTwoEnd 事件处理
+    private void OnMoveToSuspendPointEventStageTwoEnd()
+    {
+        // 启动协程：等待5秒后执行渐显序列
+        StartCoroutine(DelayedStartFadeInSequence());
+    }
+
+    // 延迟执行渐显序列协程
+    private IEnumerator DelayedStartFadeInSequence()
+    {
+        // 等待5秒
+        yield return new WaitForSeconds(5f);
+        
+        // 执行渐显序列
+        StartFadeInSequence();
     }
 }
