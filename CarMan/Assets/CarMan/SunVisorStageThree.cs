@@ -28,7 +28,7 @@ public class SunVisorStageThree : MonoBehaviour
             }
             
             // 检查X轴旋转是否大于0度且尚未输出过日志
-            if (xRotation > 0f && !hasLogged)
+            if (xRotation > 88f && !hasLogged)
             {
                 Debug.Log("sun 角度大于0了 " + xRotation);
                 hasLogged = true; // 标记为已输出

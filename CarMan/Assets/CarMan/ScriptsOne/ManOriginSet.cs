@@ -13,6 +13,16 @@ public class ManOriginSet : MonoBehaviour
     public Transform sonT;
     public Transform targetT;
     public InputActionProperty RightSecondButton;
+    
+    [Header("长按设置")]
+    [Tooltip("长按触发时间（秒）")]
+    public float longPressDuration = 0.5f;
+    
+    [Tooltip("按钮按下开始时间")]
+    private float buttonPressStartTime = 0f;
+    
+    [Tooltip("是否正在检测长按")]
+    private bool isDetectingLongPress = false;
 
     [Header("跟踪模式设置")]
     [Tooltip("是否处于跟踪模式")]
@@ -144,7 +154,30 @@ public class ManOriginSet : MonoBehaviour
     void Start()
     {
         RightSecondButton.action.Enable();
+        StartCoroutine(DelayedStart());
     }
+
+    private IEnumerator DelayedStart()
+    {
+        // 等待0.1second
+        yield return new WaitForSeconds(1f);
+
+
+        ExitTrackingMode();
+        AlignChildToTargetByMovingParent();
+        EnterTrackingMode();
+
+
+    }
+    [Button("DelayedStart")]
+    public void DelayedStarteeee()
+    {
+        ExitTrackingMode();
+        AlignChildToTargetByMovingParent();
+        EnterTrackingMode();
+    }
+
+
     void Update()
     {
 
@@ -172,12 +205,27 @@ public class ManOriginSet : MonoBehaviour
         // }
 
         //input
-        // 使用现成的方法检测按钮按下的瞬间
+        // 检测按钮按下瞬间，开始计时
         if (RightSecondButton.action.WasPressedThisFrame())
         {
+            buttonPressStartTime = Time.time;
+            isDetectingLongPress = true;
+        }
+        
+        // 检测按钮释放，取消长按检测
+        if (RightSecondButton.action.WasReleasedThisFrame())
+        {
+            isDetectingLongPress = false;
+        }
+        
+        // 检测长按（按住0.5秒）
+        if (isDetectingLongPress && Time.time - buttonPressStartTime >= longPressDuration)
+        {
+            // 执行操作并重置状态
             ExitTrackingMode();
             AlignChildToTargetByMovingParent();
             EnterTrackingMode();
+            isDetectingLongPress = false;
         }
     }
 }

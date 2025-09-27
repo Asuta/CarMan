@@ -26,5 +26,9 @@ public class CarSystemButton : MonoBehaviour
             Debug.Log("Button Pressed");
             OnButtonPressed.Invoke();
         }
+        else
+        {
+            Debug.Log("Button Not Pressed"+collision.gameObject.layer);
+        }
     }
 }
