@@ -27038,6 +27038,7 @@ GameObject:
   - component: {fileID: 779540196}
   - component: {fileID: 779540197}
   - component: {fileID: 779540198}
+  - component: {fileID: 779540199}
   m_Layer: 0
   m_Name: EyeBlack
   m_TagString: Untagged
@@ -27102,7 +27103,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 0f6e58b51bce11f45b157cbafdbd170d, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -27119,12 +27120,27 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 779540195}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 506b76370b3934245879bd35c3bd3817, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   spriteRenderer: {fileID: 779540197}
+--- !u!114 &779540199
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 779540195}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2320f2005e8cfce498c156a738335710, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteRenderer: {fileID: 779540197}
+  camera: {fileID: 1020676711}
+  textMeshPro: {fileID: 983390241}
 --- !u!1001 &780239152
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -29844,7 +29860,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 983390238}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bc37273aea326d849acac781db26648a, type: 3}
   m_Name: 
@@ -52988,8 +53004,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotateTarget: {fileID: 934916827}
-  rotateA: {x: 0, y: 0, z: 0}
-  rotateB: {x: 0, y: 0, z: 0}
 --- !u!1 &1695167140
 GameObject:
   m_ObjectHideFlags: 0
