@@ -24,7 +24,7 @@ public static class MyEvent
     public static UnityEvent CameraBlackModeEvent = new UnityEvent(); // 相机黑屏模式事件
     public static UnityEvent TextFadeInEvent = new UnityEvent(); // 文字渐变显示事件
     public static UnityEvent ArriveAtPointAEvent = new UnityEvent(); // 到达point A位置事件
-    public static UnityEvent RodAxisFullyOpenedEvent = new UnityEvent(); // 栏杆完全打开事件（stage One Two）
+    public static UnityEvent RodAxisFullyOpenedEvent = new UnityEvent(); // 栏杆完全打开事件（stage One Two  Three）
     public static UnityEvent MoveToSuspendPointEvent = new UnityEvent(); // 移动到终点事件
     public static UnityEvent StopRodAxisFullyOpenedEvent = new UnityEvent(); // 停车厂栏杆完全打开事件
     public static UnityEvent CupBreakEvent = new UnityEvent(); // 杯子碎了事件
@@ -45,6 +45,7 @@ public static class MyEvent
     public static UnityEvent SystemStartEventStageThree = new UnityEvent(); // 系统启动事件
     public static UnityEvent MoveToSuspendPointEventStageThree = new UnityEvent(); // 移动到红绿灯事件
     public static UnityEvent lightToGreenEvent = new UnityEvent(); // 红绿灯变绿事件
+    public static UnityEvent MoveMoveEventStageThree = new UnityEvent(); // 继续行进事件
     public static UnityEvent MoveToSuspendPointEventStageThreeB = new UnityEvent(); // 移动到点B（收费站）事件
     public static UnityEvent MoveToSuspendPointEventStageThreeC = new UnityEvent(); // 移动到点C事件
     public static UnityEvent MoveToSuspendPointEventStageThreeEnd = new UnityEvent(); // 移动到点End事件 

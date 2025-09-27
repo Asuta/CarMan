@@ -11,7 +11,6 @@ public class RedLight : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        meshRenderer = GetComponent<MeshRenderer>();
         MyEvent.MoveToSuspendPointEventStageThree.AddListener(OnMoveToSuspendPointEventStageThree);
     }
 
@@ -30,9 +29,11 @@ public class RedLight : MonoBehaviour
     IEnumerator ChangeToGreenAfterDelay()
     {
         yield return new WaitForSeconds(5f);
-        Debug.Log("哈哈哈");
         meshRenderer.material = materialGreen;
+        yield return new WaitForSeconds(1f);
         MyEvent.lightToGreenEvent.Invoke();
+        yield return new WaitForSeconds(3f);
+        MyEvent.MoveMoveEventStageThree.Invoke();
     }
 
     void OnDestroy()

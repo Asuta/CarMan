@@ -51,12 +51,22 @@ public class CarStageThree : MonoBehaviour
 
         // 监听系统启动事件（stage Three）
         MyEvent.SystemStartEventStageThree.AddListener(OnSystemStartEventTriggered);
+
+        // 监听红绿灯变绿事件（stage Three）
         MyEvent.lightToGreenEvent.AddListener(OnLightToGreenEventTriggered);
+
+        // 监听栏杆完全打开事件（stage Three） 
+        MyEvent.RodAxisFullyOpenedEvent.AddListener(OnRodAxisFullyOpened);
 
 
     }
 
     private void OnLightToGreenEventTriggered()
+    {
+        StartContinueMoveToPoint();
+    }
+
+    private void OnRodAxisFullyOpened()
     {
         StartContinueMoveToPoint();
     }
@@ -194,19 +204,7 @@ public class CarStageThree : MonoBehaviour
 
     }
 
-    // 栏杆完全打开事件处理方法
-    private void OnRodAxisFullyOpened()
-    {
-        Debug.Log("栏杆完全打开事件触发，汽车开始移动");
-        if (!isMoving && pointPairs.Count > 0)
-        {
-            // 调用移动方法，使用当前索引的点对
-            StartMoveToPoint();
 
-            // 移动到下一个点极（循环）
-            currentPairIndex = (currentPairIndex + 1) % pointPairs.Count;
-        }
-    }
 
     // 继续移动事件处理方法
     private void OnMoveContinue()
@@ -225,9 +223,15 @@ public class CarStageThree : MonoBehaviour
     // 在对象销毁时移除事件监听，避免内存泄漏
     private void OnDestroy()
     {
+        // 监听系统启动事件（stage Three）
+        MyEvent.SystemStartEventStageThree.RemoveListener(OnSystemStartEventTriggered);
+
+        // 监听红绿灯变绿事件（stage Three）
+        MyEvent.lightToGreenEvent.RemoveListener(OnLightToGreenEventTriggered);
+
+        // 监听栏杆完全打开事件（stage Three） 
         MyEvent.RodAxisFullyOpenedEvent.RemoveListener(OnRodAxisFullyOpened);
-        MyEvent.MoveContinueEvent.RemoveListener(OnMoveContinue);
-        MyEvent.RodAxisFullyOpenedEvent.RemoveListener(OnRodAxisFullyOpened);
+
     }
 
     // 自动移动到下一个点对
@@ -268,7 +272,7 @@ public class CarStageThree : MonoBehaviour
                 StopCoroutine(speedChangeCoroutine);
             }
             speedChangeCoroutine = StartCoroutine(GraduallyReduceSpeed(1.0f, 0.5f));
-            
+
             // 立即继续移动，同时进行速度渐变
             StartCoroutine(AutoMoveToNextPair());
 
@@ -299,10 +303,10 @@ public class CarStageThree : MonoBehaviour
         float startSpeed = moveSpeed;
         float targetSpeed = originalMoveSpeed * targetPercentage;
         float elapsedTime = 0f;
-        
+
         Debug.Log($"开始速度渐变: 从 {startSpeed} 降到 {targetSpeed}，持续 {duration} 秒");
         Debug.Log($"原始速度: {originalMoveSpeed}, 目标百分比: {targetPercentage}");
-        
+
         while (elapsedTime < duration)
         {
             elapsedTime += Time.deltaTime;
@@ -310,11 +314,11 @@ public class CarStageThree : MonoBehaviour
             moveSpeed = Mathf.Lerp(startSpeed, targetSpeed, t);
             yield return null;
         }
-        
+
         // 确保最终速度精确到达目标值
         moveSpeed = targetSpeed;
         Debug.Log($"速度渐变完成: 当前速度 {moveSpeed}");
-        
+
         // 验证最终速度是否正确
         if (Mathf.Approximately(moveSpeed, targetSpeed))
         {
