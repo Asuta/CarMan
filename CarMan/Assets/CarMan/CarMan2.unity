@@ -53509,7 +53509,8 @@ MonoBehaviour:
   targetT: {fileID: 1747716900}
   pointA: {fileID: 237755816}
   pointB: {fileID: 310522332}
-  moveSpeed: 2
+  moveSpeed: 22
+  waitTime: 5
   grabbable: {fileID: 1747716904}
   grabObject: {fileID: 1747716901}
 --- !u!1 &1828177355

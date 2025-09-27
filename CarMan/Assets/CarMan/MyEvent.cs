@@ -24,7 +24,7 @@ public static class MyEvent
     public static UnityEvent CameraBlackModeEvent = new UnityEvent(); // 相机黑屏模式事件
     public static UnityEvent TextFadeInEvent = new UnityEvent(); // 文字渐变显示事件
     public static UnityEvent ArriveAtPointAEvent = new UnityEvent(); // 到达point A位置事件
-    public static UnityEvent RodAxisFullyOpenedEvent = new UnityEvent(); // 栏杆完全打开事件
+    public static UnityEvent RodAxisFullyOpenedEvent = new UnityEvent(); // 栏杆完全打开事件（stage One Two）
     public static UnityEvent MoveToSuspendPointEvent = new UnityEvent(); // 移动到终点事件
     public static UnityEvent StopRodAxisFullyOpenedEvent = new UnityEvent(); // 停车厂栏杆完全打开事件
     public static UnityEvent CupBreakEvent = new UnityEvent(); // 杯子碎了事件

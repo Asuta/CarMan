@@ -41,6 +41,9 @@ public class CarStageTwo : MonoBehaviour
         // 监听释放汉堡事件
         MyEvent.ReleaseHunbergerEventStageTwo.AddListener(OnReleaseHunbergerEventTriggered);
 
+        // 监听栏杆完全打开事件（stage Two）
+        MyEvent.RodAxisFullyOpenedEvent.AddListener(OnRodAxisFullyOpened);
+
         
     }
 
@@ -210,6 +213,7 @@ public class CarStageTwo : MonoBehaviour
     {
         MyEvent.RodAxisFullyOpenedEvent.RemoveListener(OnRodAxisFullyOpened);
         MyEvent.MoveContinueEvent.RemoveListener(OnMoveContinue);
+        MyEvent.RodAxisFullyOpenedEvent.RemoveListener(OnRodAxisFullyOpened);
     }
 
     // 自动移动到下一个点对
