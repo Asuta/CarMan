@@ -11,6 +11,7 @@ public class HunberRoom : MonoBehaviour
     public Transform pointA;
     public Transform pointB;
     public float moveSpeed = 2.0f;
+    public float waitTime = 5.0f;
     public Grabbable grabbable;
     public GrabObject grabObject;
     
@@ -36,7 +37,7 @@ public class HunberRoom : MonoBehaviour
     private IEnumerator After5SecondMoveToPointBCoroutine()
     {
         Debug.Log("开始等待5秒...");
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(waitTime);
         Debug.Log("5秒等待结束，开始移动到B点");
         MoveToPointB();
     }

@@ -36,6 +36,9 @@ public static class MyEvent
     public static UnityEvent TextFadeOutEventTwo = new UnityEvent(); // 文字渐变隐藏事件
     public static UnityEvent SystemStartEventTwo = new UnityEvent(); // 系统启动事件
     public static UnityEvent MoveToSuspendPointEventStageTwo = new UnityEvent(); // 移动到终点事件
+    public static UnityEvent ReleaseHunbergerEventStageTwo = new UnityEvent(); // 释放汉堡事件
+    public static UnityEvent MoveToSuspendPointEventStageTwoB = new UnityEvent(); // 移动到点B事件
+    public static UnityEvent MoveToSuspendPointEventStageTwoC = new UnityEvent(); // 移动到点C事件
 }
 
 

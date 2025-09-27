@@ -19,6 +19,8 @@ public class CarStageTwo : MonoBehaviour
     private Quaternion targetRotation;
     private int currentPairIndex = 0;
     public Transform SuspendPoint;
+    public Transform SuspendPointB;
+    public Transform SuspendPointC;
     public Transform EndPoint;
     // Start is called before the first frame update
     void Start()
@@ -36,7 +38,25 @@ public class CarStageTwo : MonoBehaviour
         // // 监听栏杆start打开事件（stage Two）
         MyEvent.SystemStartEventTwo.AddListener(OnSystemStartEventTriggered);
 
+        // 监听释放汉堡事件
+        MyEvent.ReleaseHunbergerEventStageTwo.AddListener(OnReleaseHunbergerEventTriggered);
+
         
+    }
+
+    private void OnReleaseHunbergerEventTriggered()
+    {
+        // 等待五秒  继续执行StartContinueMoveToPoint方法
+        StartCoroutine(WaitAndContinueMove());
+    }
+
+    // 等待5秒后继续移动的协程
+    private IEnumerator WaitAndContinueMove()
+    {
+        Debug.Log("汉堡释放事件触发，等待5秒后继续移动...");
+        yield return new WaitForSeconds(2f);
+        Debug.Log("5秒等待结束，继续移动");
+        StartContinueMoveToPoint();
     }
 
     private void OnSystemStartEventTriggered()
@@ -206,11 +226,22 @@ public class CarStageTwo : MonoBehaviour
     // 判断是否可以继续移动到下一个点对
     void CanContinueMoving(Transform currentPoint)
     {
-        // 判断当前点的名称，如果是 point a 则继续移动
         if (currentPoint == SuspendPoint)
         {
             MyEvent.MoveToSuspendPointEventStageTwo.Invoke();
-            Debug.Log("移动到终点事件触发");
+            Debug.Log("移动到终点事件触发  到汉堡店了");
+            return;
+        }
+        if (currentPoint == SuspendPointB)
+        {
+            MyEvent.MoveToSuspendPointEventStageTwoB.Invoke();
+            Debug.Log("移动到点B事件触发  到收费站了");
+            return;
+        }
+        if (currentPoint == SuspendPointC)
+        {
+            MyEvent.MoveToSuspendPointEventStageTwoC.Invoke();
+            Debug.Log("移动到点C事件触发  到收费站了");
             return;
         }
         else if (currentPoint == EndPoint)
