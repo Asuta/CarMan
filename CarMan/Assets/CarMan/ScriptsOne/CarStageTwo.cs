@@ -9,6 +9,7 @@ public class CarStageTwo : MonoBehaviour
 {
     public List<PointPair> pointPairs = new List<PointPair>();
     public float moveSpeed = 2.0f;
+    private float originalMoveSpeed; // 保存原始速度（不初始化，在Start中设置）
     private Transform thisT;
     private bool isMoving = false;
     private float journeyLength;
@@ -18,6 +19,7 @@ public class CarStageTwo : MonoBehaviour
     private Quaternion startRotation;
     private Quaternion targetRotation;
     private int currentPairIndex = 0;
+    private Coroutine speedChangeCoroutine; // 速度变化协程引用
     public Transform SuspendPoint;
     public Transform SuspendPointB;
     public Transform SuspendPointC;
@@ -30,6 +32,9 @@ public class CarStageTwo : MonoBehaviour
         {
             thisT = transform;
         }
+
+        // 保存原始移动速度
+        originalMoveSpeed = moveSpeed;
 
         // // 监听栏杆完全打开事件（stage One）
         // MyEvent.RodAxisFullyOpenedEvent.AddListener(OnRodAxisFullyOpened);
@@ -44,7 +49,7 @@ public class CarStageTwo : MonoBehaviour
         // 监听栏杆完全打开事件（stage Two）
         MyEvent.RodAxisFullyOpenedEvent.AddListener(OnRodAxisFullyOpened);
 
-        
+
     }
 
     private void OnReleaseHunbergerEventTriggered()
@@ -189,7 +194,7 @@ public class CarStageTwo : MonoBehaviour
             // 调用移动方法，使用当前索引的点对
             StartMoveToPoint();
 
-            // 移动到下一个点对（循环）
+            // 移动到下一个点极（循环）
             currentPairIndex = (currentPairIndex + 1) % pointPairs.Count;
         }
     }
@@ -245,7 +250,19 @@ public class CarStageTwo : MonoBehaviour
         if (currentPoint == SuspendPointC)
         {
             MyEvent.MoveToSuspendPointEventStageTwoC.Invoke();
+
             Debug.Log("移动到点C事件触发  到收费站了");
+
+            // 启动速度渐变协程：从当前速度降到50%，在1秒内完成
+            if (speedChangeCoroutine != null)
+            {
+                StopCoroutine(speedChangeCoroutine);
+            }
+            speedChangeCoroutine = StartCoroutine(GraduallyReduceSpeed(1.0f, 0.5f));
+            
+            // 立即继续移动，同时进行速度渐变
+            StartCoroutine(AutoMoveToNextPair());
+
             return;
         }
         else if (currentPoint == EndPoint)
@@ -259,6 +276,43 @@ public class CarStageTwo : MonoBehaviour
         {
             Debug.Log("继续移动事件触发");
             StartCoroutine(AutoMoveToNextPair());
+        }
+    }
+
+    /// <summary>
+    /// 逐渐降低速度的协程
+    /// </summary>
+    /// <param name="duration">渐变持续时间（秒）</param>
+    /// <param name="targetPercentage">目标速度百分比（0-1）</param>
+    private IEnumerator GraduallyReduceSpeed(float duration, float targetPercentage)
+    {
+        float startSpeed = moveSpeed;
+        float targetSpeed = originalMoveSpeed * targetPercentage;
+        float elapsedTime = 0f;
+        
+        Debug.Log($"开始速度渐变: 从 {startSpeed} 降到 {targetSpeed}，持续 {duration} 秒");
+        Debug.Log($"原始速度: {originalMoveSpeed}, 目标百分比: {targetPercentage}");
+        
+        while (elapsedTime < duration)
+        {
+            elapsedTime += Time.deltaTime;
+            float t = elapsedTime / duration;
+            moveSpeed = Mathf.Lerp(startSpeed, targetSpeed, t);
+            yield return null;
+        }
+        
+        // 确保最终速度精确到达目标值
+        moveSpeed = targetSpeed;
+        Debug.Log($"速度渐变完成: 当前速度 {moveSpeed}");
+        
+        // 验证最终速度是否正确
+        if (Mathf.Approximately(moveSpeed, targetSpeed))
+        {
+            Debug.Log("速度渐变验证: 成功达到目标速度");
+        }
+        else
+        {
+            Debug.LogWarning($"速度渐变验证: 期望 {targetSpeed}，实际 {moveSpeed}");
         }
     }
 }
