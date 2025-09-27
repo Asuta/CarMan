@@ -12,10 +12,20 @@ public class EyeBlackStageTwo : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        // 初始时关闭精灵渲染器
+        // 初始时设置精灵渲染器 alpha 为 1（完全显示）
         if (spriteRenderer != null)
         {
-            spriteRenderer.enabled = false;
+            Color color = spriteRenderer.color;
+            color.a = 1f;
+            spriteRenderer.color = color;
+        }
+        
+        // 初始时设置文字 alpha 为 1（完全显示）
+        if (textMeshPro != null)
+        {
+            Color textColor = textMeshPro.color;
+            textColor.a = 1f;
+            textMeshPro.color = textColor;
         }
         
         // 设置相机只显示 Text 图层，并设置背景色为黑色
@@ -36,8 +46,8 @@ public class EyeBlackStageTwo : MonoBehaviour
             camera.backgroundColor = Color.black;
         }
         
-        // 启动协程：3秒后关闭文字，5秒后开启精灵渲染器并恢复相机设置
-        StartCoroutine(TextAndCameraSequence());
+        // 启动协程：3秒后文字渐隐，文字渐隐完成后精灵渐隐
+        StartCoroutine(TextAndSpriteSequence());
     }
 
     // 延迟后渐隐协程：等待5秒后从1渐变到0
@@ -73,31 +83,49 @@ public class EyeBlackStageTwo : MonoBehaviour
     }
 
 
-    // 文字和相机序列协程：3秒后关闭文字，5秒后开启精灵渲染器并恢复相机设置
-    private IEnumerator TextAndCameraSequence()
+    // 文字和精灵序列协程：3秒后文字渐隐，文字渐隐完成后精灵渐隐
+    private IEnumerator TextAndSpriteSequence()
     {
-        // 3秒后关闭文字
+        // 3秒后文字渐隐（2秒内alpha从1到0）
         yield return new WaitForSeconds(3f);
         if (textMeshPro != null)
         {
-            textMeshPro.enabled = false;
-        }
-
-        // 5秒后开启精灵渲染器并恢复相机设置
-        yield return new WaitForSeconds(2f); // 总共等待5秒
-        
-        // 开启精灵渲染器
-        if (spriteRenderer != null)
-        {
-            spriteRenderer.enabled = true;
+            yield return StartCoroutine(FadeOutTextCoroutine());
         }
         
-        // 恢复相机设置：可以看到所有图层，背景色改为天空盒
+        // 文字渐隐完成后，设置相机可以看到所有图层
         if (camera != null)
         {
             camera.cullingMask = -1; // -1 表示所有图层
-            camera.clearFlags = CameraClearFlags.Skybox; // 使用天空盒作为背景
         }
+        
+        // 然后精灵渐隐（2秒内alpha从1到0）
+        if (spriteRenderer != null)
+        {
+            yield return StartCoroutine(FadeOutCoroutine());
+        }
+    }
+
+    // 文字渐隐协程：从 1 到 0 渐变 alpha 值
+    private IEnumerator FadeOutTextCoroutine()
+    {
+        if (textMeshPro == null) yield break;
+        
+        float duration = 2.0f; // 渐变持续时间（秒）
+        float elapsedTime = 0f;
+        Color color = textMeshPro.color;
+        
+        while (elapsedTime < duration)
+        {
+            elapsedTime += Time.deltaTime;
+            color.a = Mathf.Lerp(1f, 0f, elapsedTime / duration);
+            textMeshPro.color = color;
+            yield return null;
+        }
+        
+        // 确保最终 alpha 值为 0
+        color.a = 0f;
+        textMeshPro.color = color;
     }
 
     // Update is called once per frame
