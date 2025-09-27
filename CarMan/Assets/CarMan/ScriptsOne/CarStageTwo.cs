@@ -269,7 +269,8 @@ public class CarStageTwo : MonoBehaviour
         {
             // MyEvent.MoveToEndPointEvent.Invoke();
             // MyEvent.CameraBlackModeEvent.Invoke();
-            Debug.Log("相机黑屏模式事件触发");
+            Debug.Log("移动到end事件触发");
+            MyEvent.MoveToSuspendPointEventStageTwoEnd.Invoke();
             return;
         }
         else
