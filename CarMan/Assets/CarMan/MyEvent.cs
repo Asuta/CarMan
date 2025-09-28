@@ -50,6 +50,7 @@ public static class MyEvent
     public static UnityEvent SunVisorEventStageThree = new UnityEvent(); // 太阳镜事件
     public static UnityEvent MoveToSuspendPointEventStageThreeC = new UnityEvent(); // 移动到点C事件
     public static UnityEvent MoveToSuspendPointEventStageThreeEnd = new UnityEvent(); // 移动到点End事件 
+    public static UnityEvent ChangeSceneEventStageThreeEnd = new UnityEvent(); // 移动到点End事件 
 }
 
 

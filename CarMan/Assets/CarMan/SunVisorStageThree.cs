@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class SunVisorStageThree : MonoBehaviour
 {
@@ -33,7 +34,18 @@ public class SunVisorStageThree : MonoBehaviour
                 Debug.Log("sun 角度大于0了 " + xRotation);
                 hasLogged = true; // 标记为已输出
                 MyEvent.SunVisorEventStageThree.Invoke();
+                // 启动协程，5秒后输出"哈哈哈"
+                StartCoroutine(LogHahahaAfterDelay());
             }
         }
+    }
+
+    // 协程方法：5秒后输出"哈哈哈"并切换到下一个场景
+    private IEnumerator LogHahahaAfterDelay()
+    {
+        yield return new WaitForSeconds(5f);
+        Debug.Log("哈哈哈");
+        // 切换到下一个场景
+        SceneManager.LoadScene("CarMan4");
     }
 }
