@@ -61,6 +61,15 @@ MonoBehaviour:
       isAsset: 1
       _id: 1057574375
     - globalId:
+        globalObjectIdString: GlobalObjectId_V1-1-5ab19d66f2349e44890375fb999ad653-102900000-0
+      _typeString: UnityEditor.SceneAsset, UnityEditor.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      _obj: {fileID: 102900000, guid: 5ab19d66f2349e44890375fb999ad653, type: 3}
+      isSceneGameObject: 0
+      isFolder: 0
+      isAsset: 1
+      _id: 1054082370
+    - globalId:
         globalObjectIdString: GlobalObjectId_V1-1-f6e86333539f41342aef3f213b616951-102900000-0
       _typeString: UnityEditor.SceneAsset, UnityEditor.CoreModule, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
