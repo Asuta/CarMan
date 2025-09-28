@@ -44,27 +44,6 @@ public class FireMachine : MonoBehaviour
             SwitchLid();
         }
 
-        // 检查是否既是热的又是开启状态
-        if (isHot && isOpen)
-        {
-            // 更新云生成计时器
-            cloudSpawnTimer += Time.deltaTime;
-
-            // 检查是否达到生成间隔
-            if (cloudSpawnTimer >= cloudSpawnInterval)
-            {
-                // 在cloudPoint位置生成cloudPrefab
-                Instantiate(cloudPrefab, cloudPoint.position, cloudPoint.rotation);
-
-                // 重置计时器
-                cloudSpawnTimer = 0f;
-            }
-        }
-        else
-        {
-            // 如果不满足条件，重置计时器
-            cloudSpawnTimer = 0f;
-        }
 
         // //test
         // if (Input.GetKeyDown(KeyCode.Space))
