@@ -23059,7 +23059,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -1.23, y: 1.73, z: 5.97}
-  m_LocalScale: {x: 0.4680444, y: 0.38400528, z: 0.4680444}
+  m_LocalScale: {x: 0.08413566, y: 0.06902879, z: 0.08413566}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1807339119}
@@ -53703,7 +53703,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 10.55, z: 8.33}
-  m_LocalScale: {x: 0.6218418, y: 0.6218418, z: 0.6218418}
+  m_LocalScale: {x: 0.8944572, y: 0.8944572, z: 0.8944572}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1366087431}
@@ -53977,33 +53977,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: Coffee, Assembly-CSharp
-        m_MethodName: OnGrabObject
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
   onRelease:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1747716901}
-        m_TargetAssemblyTypeName: GrabObject, Assembly-CSharp
-        m_MethodName: OnReleaseObject
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 1747716906}
         m_TargetAssemblyTypeName: Hunberger, Assembly-CSharp
         m_MethodName: OnGrabReleased
@@ -59393,7 +59369,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6099109419024720538}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 51aa14ee1e812e04c8d1b12c28141665, type: 3}
   m_Name: 

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class InvokeMoveEventStageTwo : MonoBehaviour
 {
+    bool   isPressed  = true;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,6 +19,10 @@ public class InvokeMoveEventStageTwo : MonoBehaviour
 
     public void InvokeMoveEventFunc()
     {
-        MyEvent.SystemStartEventTwo.Invoke();
+        if(isPressed)
+        {
+            MyEvent.SystemStartEventTwo.Invoke();
+            isPressed = false;
+        }
     }
 }
