@@ -1,8 +1,10 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using SingularityGroup.HotReload;
 using UnityEngine;
 using VInspector;
+using UnityEngine.SceneManagement;
 
 
 public class CarStageTwo : MonoBehaviour
@@ -271,6 +273,8 @@ public class CarStageTwo : MonoBehaviour
             // MyEvent.CameraBlackModeEvent.Invoke();
             Debug.Log("移动到end事件触发");
             MyEvent.MoveToSuspendPointEventStageTwoEnd.Invoke();
+            // after 5 second, log"hahahah"
+            StartCoroutine(LogHahaha());
             return;
         }
         else
@@ -278,6 +282,12 @@ public class CarStageTwo : MonoBehaviour
             Debug.Log("继续移动事件触发");
             StartCoroutine(AutoMoveToNextPair());
         }
+    }
+
+    private IEnumerator LogHahaha()
+    {
+        yield return new WaitForSeconds(15f);
+        SceneManager.LoadScene("CarMan3");
     }
 
     /// <summary>
