@@ -1703,7 +1703,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 46866622}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -52854,7 +52854,7 @@ MonoBehaviour:
   BigTarget: {fileID: 1938511}
   MiniCenter: {fileID: 46866623}
   MiniTarget: {fileID: 1444737477}
-  scale: 0.002
+  scale: 0.001
 --- !u!1001 &1559689801
 PrefabInstance:
   m_ObjectHideFlags: 0

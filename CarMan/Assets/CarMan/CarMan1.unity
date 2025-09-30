@@ -778,7 +778,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 46866622}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -20469,6 +20469,7 @@ MonoBehaviour:
       m_Flags: 0
     m_Reference: {fileID: 2123278835456677422, guid: ea9500ae32862c949b420c59682d02ed,
       type: 3}
+  longPressDuration: 0.5
   isTrackingMode: 0
 --- !u!1 &133932224
 GameObject:
@@ -24277,6 +24278,7 @@ MonoBehaviour:
       m_Flags: 0
     m_Reference: {fileID: 2123278835456677422, guid: ea9500ae32862c949b420c59682d02ed,
       type: 3}
+  longPressDuration: 0.5
   isTrackingMode: 0
 --- !u!114 &633288616
 MonoBehaviour:
@@ -48933,7 +48935,7 @@ MonoBehaviour:
   BigTarget: {fileID: 1938511}
   MiniCenter: {fileID: 46866623}
   MiniTarget: {fileID: 1444737477}
-  scale: 0.002
+  scale: 0.001
 --- !u!1 &1570871323
 GameObject:
   m_ObjectHideFlags: 0
