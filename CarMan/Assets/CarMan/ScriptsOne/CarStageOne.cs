@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using VInspector;
-
+using UnityEngine.SceneManagement;
 
 public class CarStageOne : MonoBehaviour
 {
@@ -192,11 +192,19 @@ public class CarStageOne : MonoBehaviour
         {
             MyEvent.MoveToEndPointEvent.Invoke();
             MyEvent.CameraBlackModeEvent.Invoke();
+            // after 5 second, log"hahahah"
+            StartCoroutine(LogHahaha());
             return;
         }
         else
         {
             StartCoroutine(AutoMoveToNextPair());
         }
+    }
+
+    private IEnumerator LogHahaha()
+    {
+        yield return new WaitForSeconds(10f);
+        SceneManager.LoadScene("CarMan2");
     }
 }
